@@ -1,12 +1,26 @@
 import { launch, LaunchOptions, PDFOptions } from 'puppeteer'
-import { fromBuffer } from 'pdf2pic'
+import { PDFiumLibrary, PDFiumPageRenderOptions } from '@hyzyla/pdfium'
 export interface PuppeteerOptions {
   launch?: LaunchOptions
   pdf?: PDFOptions
 }
 
+import sharp from 'sharp'
+
 export default class HtmlRenderer {
   constructor() {}
+
+  private async renderFunction(options: PDFiumPageRenderOptions) {
+    return await sharp(options.data, {
+      raw: {
+        width: options.width,
+        height: options.height,
+        channels: 4,
+      },
+    })
+      .png()
+      .toBuffer()
+  }
 
   public async renderFromHtml(html: string, isPreview: boolean = false) {
     const { browser, page } = await this.getBrowserAndPage()
@@ -15,30 +29,28 @@ export default class HtmlRenderer {
     await page.evaluateHandle('document.fonts.ready')
 
     const pdfOptions: PDFOptions = {
-      // format: 'A4',
       scale: 1,
       printBackground: true,
       preferCSSPageSize: true,
     }
     try {
       const pdf = await page.pdf(pdfOptions)
-      const pageCount = pdf.toString().match(/\/Type[\s]*\/Page[^s]/g)!.length
-      if (isPreview) {
-        const preview = fromBuffer(pdf, {
-          width: 1240,
-          height: 1754,
-          format: 'png',
-        })
-        const images: any = []
-        for (let i = 0; i < pageCount; i++) {
-          images.push('data:image/png;base64,' + (await preview(i + 1, true))['base64'])
-        }
+      const buffer = Buffer.from(pdf)
 
+      if (isPreview) {
+        const library = await PDFiumLibrary.init()
+        const doc = await library.loadDocument(buffer)
+        const images: any = []
+        for (const page of doc.pages()) {
+          const p = await page.render({ scale: 3, render: this.renderFunction })
+          images.push('data:image/png;base64' + ',' + Buffer.from(p.data).toString('base64'))
+        }
         return images
       }
 
-      return ['data:application/pdf;base64,' + pdf.toString('base64')]
+      return ['data:application/pdf;base64,' + buffer.toString('base64')]
     } catch (e) {
+      console.error(e)
     } finally {
       await browser.close()
     }

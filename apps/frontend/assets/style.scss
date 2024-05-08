@@ -1,9 +1,9 @@
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Cantarell:wght@200;400;700&display=swap');
-@import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
+@import '@vuepic/vue-datepicker/dist/main.css';
 
 * {
   scrollbar-width: thin;

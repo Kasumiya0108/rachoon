@@ -1,12 +1,3 @@
-FROM node:18 as builder
-WORKDIR /app
-
-COPY package.json .
-RUN npm install
-COPY . . 
-RUN npm run build
-
-
 FROM zenika/alpine-chrome
 
 LABEL maintainer="Adis Durakovic <adis.durakovic@gmail.com>"
@@ -17,6 +8,9 @@ RUN apk add --no-cache --update \
 
 WORKDIR /app
 
-COPY --from=builder /app/build .
-COPY startup.sh .
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+COPY startup.sh /app
 ENTRYPOINT ["sh", "startup.sh"]

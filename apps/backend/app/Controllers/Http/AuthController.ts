@@ -7,10 +7,15 @@ export default class AuthController {
   public async store(ctx: HttpContextContract) {
     const email = ctx.request.input('email')
     const password = ctx.request.input('password')
+    const organization = await OrganizationHelper.getFromContext(ctx)
+    if (!organization) {
+      return ctx.response.notFound('No such organization')
+    }
     const user = await User.query()
+
       .where({
         email: email,
-        organizationId: HashIDs.decode((await OrganizationHelper.getFromOrigin(ctx)).id!),
+        organizationId: HashIDs.decode(organization.id),
       })
       .first()
 

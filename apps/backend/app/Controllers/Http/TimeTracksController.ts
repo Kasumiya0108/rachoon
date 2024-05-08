@@ -15,8 +15,8 @@ export default class TimeTracksController {
         query.preload('client', (query) => query.select(['id', 'number', 'name']))
       )
       .preload('user', (query) => query.select(['id', 'data']))
-      .if(start, (query) => query.where('date', '>=', DateTime.fromISO(start).toSQL()))
-      .if(end, (query) => query.where('date', '<=', DateTime.fromISO(end).toSQL()))
+      .if(start, (query) => query.where('date', '>=', DateTime.fromISO(start).toSQL() as string))
+      .if(end, (query) => query.where('date', '<=', DateTime.fromISO(end).toSQL() as string))
       .if(clientId, (query) => query.where({ clientId: clientId }))
       .orderBy('date', 'desc')
   }

@@ -45,8 +45,8 @@ export default class DashboardController {
         organizationId: ctx.auth.user?.organization.id,
         userId: ctx.auth.user?.id,
       })
-      .andWhere('date', '>=', DateTime.local(DateTime.now().year, 1, 1, 0, 0).toSQL())
-      .andWhere('date', '<=', DateTime.local(DateTime.now().year, 12, 31, 23, 59).toSQL())
+      .andWhere('date', '>=', DateTime.local(DateTime.now().year, 1, 1, 0, 0).toSQL() as string)
+      .andWhere('date', '<=', DateTime.local(DateTime.now().year, 12, 31, 23, 59).toSQL() as string)
       .select(Database.raw(`sum((data->>'minutes')::int) as minutes`))
       .first()
 

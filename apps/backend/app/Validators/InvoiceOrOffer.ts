@@ -10,6 +10,7 @@ class InvoiceOrOfferValidator {
       positions: schema.array().members(schema.object().anyMembers()),
       discountsCharges: schema.array.optional().members(schema.object().anyMembers()),
       taxes: schema.object().anyMembers(),
+      taxOption: schema.object().anyMembers(),
       date: schema.date(),
       dueDate: schema.date(),
       headingText: schema.string.optional(),

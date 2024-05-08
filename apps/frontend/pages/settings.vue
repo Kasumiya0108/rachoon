@@ -1,30 +1,43 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'core',
-})
+  layout: "core",
+});
 
-const tabs = ['Organization', 'General', 'Style', 'Offers', 'Invoices', 'Clients', 'Taxes', 'Units']
-const activeTab = ref(Math.max(tabs.indexOf(window.location.href.split('#')[1]), 0))
+const tabs = [
+  "Organization",
+  "General",
+  "Style",
+  "Offers",
+  "Invoices",
+  "Clients",
+  "Taxes",
+  "Units",
+];
+const activeTab = ref(
+  Math.max(tabs.indexOf(window.location.href.split("#")[1]), 0),
+);
 const tabContents = [
-  defineAsyncComponent(() => import('~/components/Settings/Organization.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/General.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Style.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Offers.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Invoices.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Clients.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Taxes.vue')),
-  defineAsyncComponent(() => import('~/components/Settings/Units.vue')),
-]
+  defineAsyncComponent(() => import("~/components/Settings/Organization.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/General.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Style.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Offers.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Invoices.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Clients.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Taxes.vue")),
+  defineAsyncComponent(() => import("~/components/Settings/Units.vue")),
+];
 
-function save(e) {
-  e.preventDefault()
-  useSettings().save()
+function save(e: any) {
+  e.preventDefault();
+  useSettings().save();
 }
 </script>
 <template>
   <form @submit="save">
     <div class="flex gap-2">
-      <button type="submit" class="btn btn-sm btn-primary gap-2"><FaIcon icon="fa-solid fa-plus-circle " /> Save</button>
+      <button type="submit" class="btn btn-sm btn-primary gap-2">
+        <FaIcon icon="fa-solid fa-plus-circle " /> Save
+      </button>
     </div>
     <div class="divider"></div>
     <div class="tabs mt-5 bg-base-200">
