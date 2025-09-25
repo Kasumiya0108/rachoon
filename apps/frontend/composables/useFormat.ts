@@ -1,5 +1,3 @@
-import * as locale from "date-fns/locale";
-import * as dateFns from "date-fns";
 import Format from "@repo/common/Format";
 
 function toCurrency(value: any) {
@@ -8,12 +6,6 @@ function toCurrency(value: any) {
     useProfile().me.organization.settings.general.locale,
     useProfile().me.organization.settings.general.currency,
   );
-}
-
-function getLocale() {
-  const s = useProfile().me.organization.settings.general.locale.split("-");
-
-  return s.length > 1 ? `${s[0]}${s[1].toUpperCase()}` : s[0];
 }
 
 function date(value: any) {
