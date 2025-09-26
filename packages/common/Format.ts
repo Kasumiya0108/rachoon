@@ -27,4 +27,27 @@ export default class Format {
     if (Number(val) > 100) val = "100";
     return val;
   }
+
+  static invoiceOrOfferNumber(
+    entity: { start: number; format: string; padZeros: number },
+    add: number = 0,
+  ) {
+    let number = String(Number(entity.start) + add).padStart(
+      entity.padZeros,
+      "0",
+    );
+
+    number = entity.format.replace("{number}", number);
+    const d = number.match(/\{date:[a-zA-Z_\-\.]+\}/);
+    if (d) {
+      const format = d[0].replace("{date:", "").replace("}", "");
+      try {
+        const date = dateFns.format(new Date(), format);
+        number = number.replace(d[0], date);
+      } catch (e) {
+        number = number.replace(d[0], "INVALID-DATEFORMAT");
+      }
+    }
+    return number;
+  }
 }

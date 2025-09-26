@@ -24,10 +24,6 @@ definePageMeta({
 async function save() {
   await useInvoiceOrOffer().save();
 }
-
-function preview() {
-  modal.value = true;
-}
 </script>
 <template>
   <Loading v-if="useInvoiceOrOffer().loading" />
@@ -35,7 +31,7 @@ function preview() {
   <div v-else>
     <FormHeader :title="useInvoiceOrOffer().title" icon="fa-file-invoice-dollar">
       <template #buttons>
-        <select class="select select-bordered select-sm bg-base-300" v-model="useInvoiceOrOffer().invoiceOrOffer.templateId">
+        <select class="select select-bordered select-sm bg-base-300 max-w-56" v-model="useInvoiceOrOffer().invoiceOrOffer.templateId">
           <option value="" key="default">Default Template</option>
           <option v-for="u in useInvoiceOrOffer().templates" :value="u.id" :key="u.title">
             {{ u.title }}
@@ -43,7 +39,6 @@ function preview() {
         </select>
         <label class="btn btn-sm btn-neutral" for="preview-modal" @click="modal = true">
           <FaIcon icon="fa-solid fa-eye" />
-          Preview
         </label>
         <button
           class="btn btn-sm btn-neutral"
@@ -51,15 +46,9 @@ function preview() {
           v-if="useInvoiceOrOffer().invoiceOrOffer.id !== '' && useInvoiceOrOffer().mustSave <= 1"
         >
           <FaIcon icon="fa-solid fa-file-pdf" />
-          Download PDF
         </button>
-        <button
-          v-if="!useInvoiceOrOffer().invoiceOrOffer.disabled"
-          class="btn btn-sm btn-neutral"
-          @click="useInvoiceOrOffer().duplicate(useInvoiceOrOffer().invoiceOrOffer.id)"
-        >
+        <button class="btn btn-sm btn-neutral" @click="useInvoiceOrOffer().duplicate(useInvoiceOrOffer().invoiceOrOffer.id)">
           <FaIcon icon="fa-solid fa-copy " />
-          Duplicate
         </button>
 
         <button
@@ -86,7 +75,7 @@ function preview() {
       </label>
     </div>
 
-    <ul v-if="useInvoiceOrOffer().hasErrors" class="border-2 border-warning rounded p-5 mt-5 mb-10">
+    <ul v-if="useInvoiceOrOffer().hasErrors" class="border-2 border-warning rounded p-5 mt-5 mb-10 mx-5">
       <li v-for="e in useInvoiceOrOffer().invoiceOrOffer.errors()" class="text-warning">
         {{ e }}
       </li>

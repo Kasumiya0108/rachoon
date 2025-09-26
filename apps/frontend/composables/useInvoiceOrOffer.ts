@@ -94,7 +94,12 @@ export default defineStore("invoiceOrOffer", () => {
     mustSave.value++;
   }
 
-  async function duplicate(id: string) {}
+  async function duplicate(id: string) {
+    loading.value = true;
+    const duplicate = await useApi().invoicesOrOffers(singularType()).duplicate(id);
+    useRouter().push(`/${type()}/${duplicate.id}`);
+    loading.value = false;
+  }
 
   async function maybeDoConvertOffer() {
     if (useRoute().query.offer) {
@@ -144,13 +149,10 @@ export default defineStore("invoiceOrOffer", () => {
     clients.value = await useApi().clients().getAll();
     templates.value = await useApi().templates().getAll();
     const id = useRoute().params["id"] as string;
-    console.log("id");
 
+    invoiceOrOffer.value, new InvoiceOrOffer();
     if (id === "new") {
-      console.log("NEW");
-      const count = await useApi().invoicesOrOffers(singularType()).count();
-      _.mergeWith(invoiceOrOffer.value, new InvoiceOrOffer());
-      invoiceOrOffer.value.number = useSettings().settings.numberFormat(type(), count);
+      invoiceOrOffer.value.number = await useApi().invoicesOrOffers(singularType()).getNextNumber();
       title.value = invoiceOrOffer.value.number;
 
       invoiceOrOffer.value.data.dueDate = dateFns.add(invoiceOrOffer.value.data.date, {

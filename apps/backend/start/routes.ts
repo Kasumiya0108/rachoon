@@ -27,6 +27,8 @@ Route.group(() => {
     .only(['store', 'destroy'])
     .middleware({ destroy: ['auth'] })
   Route.group(() => {
+    Route.get('invoicesoroffers/duplicate/:id', 'InvoicesOrOffersController.duplicate')
+    Route.get('invoicesoroffers/number', 'InvoicesOrOffersController.number')
     Route.resource('invoicesoroffers/status', 'InvoicesOrOffersStatusController').only(['update'])
     Route.resource('invoicesoroffers', 'InvoicesOrOffersController').apiOnly()
     Route.resource('clients', 'ClientsController').apiOnly()

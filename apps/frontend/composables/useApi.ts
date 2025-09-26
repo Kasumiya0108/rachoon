@@ -94,6 +94,8 @@ export default function useApi() {
         getAll: async (): Promise<InvoiceOrOffer[]> =>
           ((await useHttp.get(`${endpoint}?type=${type}`)) as []).map((d) => new InvoiceOrOffer(d)),
         get: async (id: string): Promise<InvoiceOrOffer> => new InvoiceOrOffer(await useHttp.get(`${endpoint}/${id}`)),
+        duplicate: async (id: string): Promise<InvoiceOrOffer> => await useHttp.get(`${endpoint}/duplicate/${id}`),
+        getNextNumber: async (): Promise<string> => await useHttp.get(`${endpoint}/number?type=${type}`),
         delete: async (id: string) => await useHttp.del(`${endpoint}/${id}`),
         count: async (): Promise<number> => Number(await useHttp.get(`${endpoint}/?count=true&type=${type}`)),
         setStatus: async (id: string, status: string) =>
