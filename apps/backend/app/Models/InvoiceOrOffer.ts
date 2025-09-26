@@ -21,9 +21,9 @@ import Template from './Template'
 export default class InvoiceOrOffer extends compose(BaseModel, SoftDeletes) {
   @beforeSave()
   public static async calculate(invoiceOrOffer: InvoiceOrOffer) {
-    const common = new CommonInvoiceOrOffer(invoiceOrOffer.serialize())
-    common.calcAll()
-    invoiceOrOffer.data = common.data
+    const io = new CommonInvoiceOrOffer(invoiceOrOffer.serialize())
+    io.calculate()
+    invoiceOrOffer.data = io.data
   }
   @column({ isPrimary: true, serialize: (val) => HashIDs.encode(val) })
   public id: number
