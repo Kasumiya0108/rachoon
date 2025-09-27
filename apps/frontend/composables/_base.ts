@@ -21,7 +21,7 @@ export default class Base<T extends IBase> {
   page = ref(1);
   pages = ref(0);
   loading = ref(false);
-  perPage = ref(5);
+  perPage = ref(20);
   singularType = () => this.type().slice(0, this.type().length - 1);
 
   async save(e: Event) {
