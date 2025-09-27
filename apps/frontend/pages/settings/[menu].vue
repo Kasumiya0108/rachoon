@@ -27,8 +27,7 @@ function save(e: any) {
     <SettingsLocale v-if="menu === 'locale'" />
     <SettingsTaxes v-if="menu === 'taxes'" />
     <SettingsUnits v-if="menu === 'units'" />
-    <SettingsInvoices v-if="menu === 'invoices'" />
-    <SettingsOffers v-if="menu === 'offers'" />
+    <SettingsInvoicesOrOffers v-if="menu === 'invoices-offers'" />
     <SettingsClients v-if="menu === 'clients'" />
   </form>
 </template>

@@ -1,9 +1,10 @@
 <template>
   <div class="px-10 pt-5 flex gap-5 justify-between prose">
-    <h3>
+    <h3 class="flex gap-3 items-center">
       <FaIcon :icon="`fa-solid ${$props.icon}`" />
-      {{ $props.title }}
+      <span>{{ $props.title }}</span>
     </h3>
+
     <div class="flex gap-2">
       <slot name="buttons" />
     </div>

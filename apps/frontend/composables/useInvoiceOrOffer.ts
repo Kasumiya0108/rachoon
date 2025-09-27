@@ -164,7 +164,7 @@ export default defineStore("invoiceOrOffer", () => {
       );
       await maybeDoConvertOffer();
     } else {
-      _.mergeWith(invoiceOrOffer.value, await useApi().invoicesOrOffers(singularType()).get(id));
+      invoiceOrOffer.value = _.mergeWith(invoiceOrOffer.value, await useApi().invoicesOrOffers(singularType()).get(id));
       title.value = invoiceOrOffer.value.number;
     }
     invoiceOrOffer.value.rebuild();

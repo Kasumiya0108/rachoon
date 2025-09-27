@@ -9,7 +9,7 @@ export default function useApi() {
   return {
     clients: (endpoint: string = "/api/clients") => {
       return {
-        get: async (id: string): Promise<ClientType> => (await useHttp.get(`${endpoint}/${id}`)) as ClientType,
+        get: async (id: string): Promise<Client> => new Client(await useHttp.get(`${endpoint}/${id}`)),
         getAll: async (): Promise<Client[]> => ((await useHttp.get(`${endpoint}`)) as []).map((d) => new Client(d)),
         count: async (): Promise<number> => Number(await useHttp.get(`${endpoint}/?count=true`)),
         delete: async (id: string) => await useHttp.del(`${endpoint}/${id}`),

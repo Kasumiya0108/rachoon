@@ -6,15 +6,15 @@ useClient().form();
   <Loading v-if="useClient().loading" />
 
   <form @submit="useClient().save">
-    <FormHeader :title="useClient().client.number" icon="fa-user">
+    <FormHeader :title="useClient().client.name" icon="fa-user">
       <template #buttons>
-        <button class="btn btn-sm gap-2" type="submit">
-          <FaIcon icon="fa-solid fa-save " />
-          {{ useClient().client.id === "" ? "Create Client" : "Save" }}
-        </button>
         <button v-if="useClient().client.id !== ''" class="btn btn-sm btn-error gap-2 btn-outline">
           <FaIcon icon="fa-solid fa-close" />
           Delete
+        </button>
+        <button class="btn btn-sm btn-neutral" type="submit">
+          <FaIcon icon="fa-solid fa-save " />
+          {{ useClient().client.id === "" ? "Create Client" : "Save" }}
         </button>
       </template>
     </FormHeader>

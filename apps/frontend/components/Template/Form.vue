@@ -26,11 +26,9 @@ const vars = ref(JSON.stringify(variables, null, 2));
         <template #buttons>
           <button class="btn btn-sm btn-neutral">
             <FaIcon icon="fa-solid fa-eye" />
-            Preview
           </button>
           <button type="button" @click="useTemplate().duplicate(useTemplate().template.id)" class="btn btn-sm btn-neutral">
             <FaIcon icon="fa-solid fa-copy" />
-            Duplicate
           </button>
           <button v-if="!useTemplate().template.isGlobal" type="button" class="btn btn-sm btn-error btn-outline">
             <FaIcon icon="fa-solid fa-close" />

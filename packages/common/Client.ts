@@ -69,14 +69,6 @@ class Client implements ClientType {
   public constructor(json?: ClientType) {
     if (json) {
       _.merge(this, json);
-      if (this.minutes === null) {
-        this.duration = "00h:00m";
-      } else {
-        const h = Math.floor(this.minutes / 60);
-
-        const m = this.minutes % 60;
-        this.duration = `${h.toString().padStart(2, "0")}h:${m.toString().padStart(2, "0")}m`;
-      }
     }
   }
 

@@ -43,16 +43,9 @@
           </li>
 
           <li>
-            <NuxtLink href="/settings/offers" :class="useRoute().fullPath.includes('/formats') ? 'active' : ''">
+            <NuxtLink href="/settings/invoices-offers" :class="useRoute().fullPath.includes('/formats') ? 'active' : ''">
               <FaIcon icon="fa-solid fa-file-invoice" />
-              Offers
-            </NuxtLink>
-          </li>
-
-          <li>
-            <NuxtLink href="/settings/invoices" :class="useRoute().fullPath.includes('/formats') ? 'active' : ''">
-              <FaIcon icon="fa-solid fa-file-invoice-dollar" />
-              Invoices
+              Invoices & Offers
             </NuxtLink>
           </li>
         </ul>

@@ -38,12 +38,14 @@ export default defineStore("client", () => {
     const id = useRoute().params["id"] as string;
 
     loading.value = true;
+    client.value = new Client();
+    console.log("ID", id);
     if (id === "new") {
-      client.value = new Client();
       client.value.number = await useApi().number("client").get();
       title.value = client.value.number;
     } else {
       client.value = _.mergeWith(client.value, await useApi().clients().get(id));
+      console.log(client.value);
       title.value = client.value.number;
     }
 
