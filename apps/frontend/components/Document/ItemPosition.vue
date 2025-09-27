@@ -2,8 +2,8 @@
 const props = defineProps({
   index: { type: Number, required: true },
 });
-const invoiceOrOffer = useInvoiceOrOffer().item;
-const position = invoiceOrOffer.data.positions[props.index];
+const document = useDocument().item;
+const position = document.data.positions[props.index];
 const taxRates = useProfile().me.organization.settings.taxes.rates;
 const units = useProfile().me.organization.settings.units;
 
@@ -24,10 +24,10 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
               <td>
                 <input
                   type="text"
-                  :disabled="invoiceOrOffer.disabled()"
+                  :disabled="document.disabled()"
                   placeholder="Add a short summary ..."
                   v-model="position.title"
-                  @focus="invoiceOrOffer.focusPosition(index)"
+                  @focus="document.focusPosition(index)"
                   class="input input-bordered input-sm w-full"
                 />
               </td>
@@ -35,7 +35,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
                 <div class="form-control">
                   <div class="input-group">
                     <input
-                      :disabled="invoiceOrOffer.disabled()"
+                      :disabled="document.disabled()"
                       type="text"
                       placeholder="0"
                       v-maska="'#*.#*'"
@@ -45,7 +45,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
                     <select
                       class="select select-bordered select-sm bg-base-300"
                       v-model="position.unit"
-                      :disabled="invoiceOrOffer.disabled()"
+                      :disabled="document.disabled()"
                     >
                       <option v-for="u in units" :value="u.title" :key="u.title">
                         {{ u.title }}
@@ -63,7 +63,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
                       v-model.number="position.price"
                       v-maska="'#*.##'"
                       class="input input-bordered input-sm w-full"
-                      :disabled="invoiceOrOffer.disabled()"
+                      :disabled="document.disabled()"
                     />
                     <span>€</span>
                   </label>
@@ -72,7 +72,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
               <td width="120">
                 <div class="form-control">
                   <label class="input-group">
-                    <select class="select select-bordered select-sm" v-model="position.tax" :disabled="invoiceOrOffer.disabled()">
+                    <select class="select select-bordered select-sm" v-model="position.tax" :disabled="document.disabled()">
                       <option v-for="r in taxRates" :value="r.rate" :key="r.rate">{{ r.rate }}%</option>
                     </select>
                     <span>%</span>
@@ -88,7 +88,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
                       class="input input-bordered input-sm w-full"
                       v-model.number="position.discount"
                       v-maska="{ mask: '#*.##', preprocessor: (val) => useFormat.max100(val) }"
-                      :disabled="invoiceOrOffer.disabled()"
+                      :disabled="document.disabled()"
                     />
                     <span>%</span>
                   </label>
@@ -120,8 +120,8 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
               <td width="50">
                 <button
                   class="btn btn-square btn-sm mr-2 text-error"
-                  @click="invoiceOrOffer.removePosition(index)"
-                  :disabled="invoiceOrOffer.disabled()"
+                  @click="document.removePosition(index)"
+                  :disabled="document.disabled()"
                 >
                   <FaIcon icon="fa-trash-can" />
                 </button>

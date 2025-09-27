@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const invoiceOrOffer = useInvoiceOrOffer().item;
-const positions = invoiceOrOffer.data.positions;
-const discountsCharges = invoiceOrOffer.data.discountsCharges;
+const document = useDocument().item;
+const positions = document.data.positions;
+const discountsCharges = document.data.discountsCharges;
 </script>
 
 <template>
@@ -21,12 +21,12 @@ const discountsCharges = invoiceOrOffer.data.discountsCharges;
 
     <Draggable :list="positions" item-key="id" tag="tbody" handle=".handle" ghost-class="ghost">
       <template #item="{ _, index }">
-        <InvoiceOrOfferItemPosition :index="index" />
+        <DocumentItemPosition :index="index" />
       </template>
     </Draggable>
   </table>
   <div class="flex justify-center mt-5 mb-10">
-    <button :disabled="invoiceOrOffer.disabled() ? true : null" class="btn btn-xs btn-outline gap-1" @click="invoiceOrOffer.addPosition()">
+    <button :disabled="document.disabled() ? true : null" class="btn btn-xs btn-outline gap-1" @click="document.addPosition()">
       <FaIcon icon="fa-add mr-5" />
       Add position
     </button>
@@ -44,18 +44,18 @@ const discountsCharges = invoiceOrOffer.data.discountsCharges;
 
     <Draggable :list="discountsCharges" item-key="id" tag="tbody" handle=".handle" ghost-class="ghost">
       <template #item="{ _, index }">
-        <InvoiceOrOfferItemDiscountCharge :index="index" />
+        <DocumentItemDiscountCharge :index="index" />
       </template>
     </Draggable>
   </table>
-  <p v-else class="text-info text-center" :class="invoiceOrOffer.disabled() ? 'opacity-30' : ''">
+  <p v-else class="text-info text-center" :class="document.disabled() ? 'opacity-30' : ''">
     Add discounts or charges to apply them on the subtotal.
   </p>
   <div class="flex justify-center mt-5">
     <button
       class="btn btn-xs btn-info btn-outline mb-10 gap-1"
-      @click="invoiceOrOffer.addDiscountCharge()"
-      :disabled="invoiceOrOffer.disabled() ? true : null"
+      @click="document.addDiscountCharge()"
+      :disabled="document.disabled() ? true : null"
     >
       <FaIcon icon="fa-add" />
       Add discount or charge

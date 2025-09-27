@@ -3,7 +3,7 @@ import { compose } from '@ioc:Adonis/Core/Helpers'
 import { column, BaseModel, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Organization from './Organization'
 import HashIDs from '../Helpers/hashids'
-import InvoiceOrOffer from './InvoiceOrOffer'
+import Document from './Document'
 import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
 
 export default class Client extends compose(BaseModel, SoftDeletes) {
@@ -39,19 +39,19 @@ export default class Client extends compose(BaseModel, SoftDeletes) {
   @belongsTo(() => Organization)
   public organization: BelongsTo<typeof Organization>
 
-  @hasMany(() => InvoiceOrOffer, {
+  @hasMany(() => Document, {
     onQuery: (query) => {
       return query.where({ type: 'invoice' })
     },
   })
-  public invoices: HasMany<typeof InvoiceOrOffer>
+  public invoices: HasMany<typeof Document>
 
-  @hasMany(() => InvoiceOrOffer, {
+  @hasMany(() => Document, {
     onQuery: (query) => {
       return query.where({ type: 'offer' })
     },
   })
-  public offers: HasMany<typeof InvoiceOrOffer>
+  public offers: HasMany<typeof Document>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

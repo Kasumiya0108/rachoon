@@ -1,6 +1,6 @@
 import { Dashboard } from "~~/models/dashboard";
 import { Client, type ClientType } from "~~/models/client";
-import { InvoiceOrOffer, type InvoiceOrOfferType } from "~~/models/invoiceOrOffer";
+import { Document, type DocumentType } from "~~/models/document";
 import { type OrganizationType } from "~~/models/organization";
 import { User, type UserType } from "~~/models/user";
 import { Template, type TemplateType } from "~/models/template";
@@ -90,32 +90,32 @@ export default function useApi() {
       };
     },
 
-    invoicesOrOffers: (type: string, endpoint: string = "/api/invoicesoroffers") => {
+    documents: (type: string, endpoint: string = "/api/documents") => {
       return {
-        saveOrUpdate: async (invoiceOrOffer: InvoiceOrOfferType, update: boolean = false): Promise<InvoiceOrOfferType> => {
+        saveOrUpdate: async (document: DocumentType, update: boolean = false): Promise<DocumentType> => {
           if (update) {
-            await useHttp.put(`${endpoint}/${invoiceOrOffer.id}`, invoiceOrOffer, {
-              title: `${type} ${invoiceOrOffer.number}`,
+            await useHttp.put(`${endpoint}/${document.id}`, document, {
+              title: `${type} ${document.number}`,
               text: "Successfully updated",
             });
-            return invoiceOrOffer;
+            return document;
           } else {
-            return (await useHttp.post(`${endpoint}?type=${type}`, invoiceOrOffer, {
-              title: invoiceOrOffer.number,
+            return (await useHttp.post(`${endpoint}?type=${type}`, document, {
+              title: document.number,
               text: `${type} saved successfully`,
               type: "success",
-            })) as InvoiceOrOfferType;
+            })) as DocumentType;
           }
         },
-        getAll: async (clientId: string): Promise<InvoiceOrOffer[]> =>
-          ((await useHttp.get(`${endpoint}?type=${type}&clientId=${clientId}`)).body as []).map((d) => new InvoiceOrOffer(d)),
-        get: async (id: string): Promise<InvoiceOrOffer> => new InvoiceOrOffer((await useHttp.get(`${endpoint}/${id}`)).body),
-        duplicate: async (id: string): Promise<InvoiceOrOffer> => (await useHttp.get(`${endpoint}/duplicate/${id}`)).body,
+        getAll: async (clientId: string): Promise<Document[]> =>
+          ((await useHttp.get(`${endpoint}?type=${type}&clientId=${clientId}`)).body as []).map((d) => new Document(d)),
+        get: async (id: string): Promise<Document> => new Document((await useHttp.get(`${endpoint}/${id}`)).body),
+        duplicate: async (id: string): Promise<Document> => (await useHttp.get(`${endpoint}/duplicate/${id}`)).body,
         delete: async (id: string) => (await useHttp.del(`${endpoint}/${id}`)).body,
         count: async (): Promise<number> => Number((await useHttp.get(`${endpoint}/?count=true&type=${type}`)).body),
         setStatus: async (id: string, status: string) =>
           await useHttp.put(
-            `/api/invoicesoroffers/status/${id}`,
+            `/api/documents/status/${id}`,
             { status: status },
             {
               title: "Status changed",

@@ -10,14 +10,14 @@ defineProps({
   <TypeAhead
     class="input input-bordered input-sm w-full max-w-xs"
     :placeholder="$props.placeholder"
-    :items="useInvoiceOrOffer().templates"
+    :items="useDocument().templates"
     :minInputLength="1"
     :value="val"
     @onInput="(i: any) => (val = i.input)"
     @selectItem="
       (i: Template) => {
         val = `${i.title}`;
-        useInvoiceOrOffer().setTemplate(i.id);
+        useDocument().setTemplate(i.id);
       }
     "
     :itemProjection="

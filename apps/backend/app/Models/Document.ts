@@ -1,6 +1,6 @@
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { DateTime } from 'luxon'
-import { InvoiceOrOffer as CommonInvoiceOrOffer } from '@repo/common/InvoiceOrOffer'
+import { Document as CommonDocument } from '@repo/common/Document'
 import {
   BaseModel,
   beforeSave,
@@ -18,12 +18,12 @@ import HashIDs from 'App/Helpers/hashids'
 import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
 import Template from './Template'
 
-export default class InvoiceOrOffer extends compose(BaseModel, SoftDeletes) {
+export default class Document extends compose(BaseModel, SoftDeletes) {
   @beforeSave()
-  public static async calculate(invoiceOrOffer: InvoiceOrOffer) {
-    const io = new CommonInvoiceOrOffer(invoiceOrOffer.serialize())
+  public static async calculate(document: Document) {
+    const io = new CommonDocument(document.serialize())
     io.calculate()
-    invoiceOrOffer.data = io.data
+    document.data = io.data
   }
   @column({ isPrimary: true, serialize: (val) => HashIDs.encode(val) })
   public id: number
@@ -67,9 +67,9 @@ export default class InvoiceOrOffer extends compose(BaseModel, SoftDeletes) {
   @column()
   public offerId: number
 
-  @belongsTo(() => InvoiceOrOffer, { foreignKey: 'offerId' })
-  public offer: BelongsTo<typeof InvoiceOrOffer>
+  @belongsTo(() => Document, { foreignKey: 'offerId' })
+  public offer: BelongsTo<typeof Document>
 
-  @hasMany(() => InvoiceOrOffer, { foreignKey: 'offerId' })
-  public invoices: HasMany<typeof InvoiceOrOffer>
+  @hasMany(() => Document, { foreignKey: 'offerId' })
+  public invoices: HasMany<typeof Document>
 }

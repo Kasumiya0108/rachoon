@@ -1,26 +1,26 @@
-import { InvoiceOrOffer } from "~~/models/invoiceOrOffer";
+import { Document } from "~~/models/document";
 import _ from "lodash";
 
 class Dashboard {
   invoices = {
     net: 0,
     total: 0,
-    pending: [] as InvoiceOrOffer[],
+    pending: [] as Document[],
   };
   offers = {
     net: 0,
     total: 0,
-    pending: [] as InvoiceOrOffer[],
+    pending: [] as Document[],
   };
 
   constructor(json?: any) {
     if (json) {
       _.merge(this, json);
       this.invoices.pending = this.invoices.pending.map(
-        (i) => new InvoiceOrOffer(i),
+        (i) => new Document(i),
       );
       this.offers.pending = this.offers.pending.map(
-        (i) => new InvoiceOrOffer(i),
+        (i) => new Document(i),
       );
     }
   }

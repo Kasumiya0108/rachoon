@@ -1,10 +1,10 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import InvoiceOrOffer from 'App/Models/InvoiceOrOffer'
+import Document from 'App/Models/Document'
 
 export default class DashboardController {
   public async index(ctx: HttpContextContract) {
-    const pendingInvoices = await InvoiceOrOffer.query()
+    const pendingInvoices = await Document.query()
       .where({
         type: 'invoice',
         status: 'pending',
@@ -15,7 +15,7 @@ export default class DashboardController {
       .preload('invoices')
       .orderBy('created_at', 'desc')
 
-    const pendingOffers = await InvoiceOrOffer.query()
+    const pendingOffers = await Document.query()
       .where({
         type: 'offer',
         status: 'pending',
@@ -26,13 +26,13 @@ export default class DashboardController {
       .preload('invoices')
       .orderBy('created_at', 'desc')
 
-    const invoiceAmounts = await InvoiceOrOffer.query()
+    const invoiceAmounts = await Document.query()
       .where({ type: 'invoice', organizationId: ctx.auth.user?.organization.id, status: 'paid' })
       .select(Database.raw(`sum((data->>'total')::float) as total`))
       .select(Database.raw(`sum((data->>'net')::float) as net`))
       .first()
 
-    const offerAmounts = await InvoiceOrOffer.query()
+    const offerAmounts = await Document.query()
       .where({ type: 'offer', organizationId: ctx.auth.user?.organization.id, status: 'accepted' })
       .select(Database.raw(`sum((data->>'total')::float) as total`))
       .select(Database.raw(`sum((data->>'net')::float) as net`))

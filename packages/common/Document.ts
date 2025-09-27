@@ -39,15 +39,15 @@ export interface DiscountCharge {
   amount: number;
 }
 
-export type InvoiceOrOfferType = {
+export type DocumentType = {
   id?: string;
   clientId: string;
   number: string;
   status: string;
   offerId: string | null;
   templateId: string | null;
-  offer: InvoiceOrOfferType;
-  invoices: InvoiceOrOfferType[];
+  offer: DocumentType;
+  invoices: DocumentType[];
   data: {
     title: string;
     positions: Position[];
@@ -69,7 +69,7 @@ export type InvoiceOrOfferType = {
   type: string;
 };
 
-class InvoiceOrOffer implements InvoiceOrOfferType {
+class Document implements DocumentType {
   id: string = "";
   clientId: string = null;
   client: ClientType;
@@ -77,8 +77,8 @@ class InvoiceOrOffer implements InvoiceOrOfferType {
   status: string = "pending";
   offerId = null;
   templateId = "";
-  offer: InvoiceOrOfferType;
-  invoices: InvoiceOrOfferType[];
+  offer: DocumentType;
+  invoices: DocumentType[];
   data = {
     title: "",
     positions: [] as Position[],
@@ -105,8 +105,8 @@ class InvoiceOrOffer implements InvoiceOrOfferType {
       _.merge(this, json);
 
       this.data.positions.map((p) => (p.focused = false));
-      this.offer = new InvoiceOrOffer(json.offer);
-      this.invoices = (json.invoices || []).map((i) => new InvoiceOrOffer(i));
+      this.offer = new Document(json.offer);
+      this.invoices = (json.invoices || []).map((i) => new Document(i));
       this.data.date = new Date(Date.parse(json.data.date.toString()));
       this.data.dueDate = new Date(Date.parse(json.data.dueDate.toString()));
     }
@@ -300,4 +300,4 @@ class InvoiceOrOffer implements InvoiceOrOfferType {
   }
 }
 
-export { InvoiceOrOffer };
+export { Document };

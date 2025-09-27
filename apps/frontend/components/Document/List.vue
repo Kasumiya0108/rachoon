@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { InvoiceOrOffer } from "~~/models/invoiceOrOffer";
+import { Document } from "~~/models/document";
 import * as datefns from "date-fns";
 
 definePageMeta({
@@ -7,29 +7,29 @@ definePageMeta({
 });
 const props = defineProps({
   clientId: { type: String, default: "" },
-  list: { type: Array as () => InvoiceOrOffer[], default: null },
+  list: { type: Array as () => Document[], default: null },
 });
 
 const modal = ref(false);
-const offer = ref(new InvoiceOrOffer());
+const offer = ref(new Document());
 
-useInvoiceOrOffer().list(props.clientId);
+useDocument().list(props.clientId);
 </script>
 
 <template>
-  <Loading v-if="useInvoiceOrOffer().loading" />
+  <Loading v-if="useDocument().loading" />
 
   <div v-else>
     <FormHeader
-      :title="useInvoiceOrOffer().type(true)"
-      :icon="useInvoiceOrOffer().type() === 'offers' ? 'fa-file-invoice' : 'fa-file-invoice-dollar'"
+      :title="useDocument().type(true)"
+      :icon="useDocument().type() === 'offers' ? 'fa-file-invoice' : 'fa-file-invoice-dollar'"
       :divider="false"
     >
       <template #buttons>
-        <NuxtLink class="btn btn-sm btn-neutral gap-2 no-underline" :href="`/${useInvoiceOrOffer().type()}/new`">
+        <NuxtLink class="btn btn-sm btn-neutral gap-2 no-underline" :href="`/${useDocument().type()}/new`">
           <FaIcon icon="fa-solid fa-plus-circle " />
           New
-          {{ useInvoiceOrOffer().singularType() }}
+          {{ useDocument().singularType() }}
         </NuxtLink>
       </template>
     </FormHeader>
@@ -38,27 +38,27 @@ useInvoiceOrOffer().list(props.clientId);
       <input type="checkbox" id="offerToInvoice-modal" class="modal-toggle" />
       <label for="offerToInvoice-modal" class="modal cursor-pointer">
         <label class="modal-box relative">
-          <InvoiceOrOfferToInvoice :offer="offer" />
+          <DocumentToInvoice :offer="offer" />
         </label>
       </label>
     </div>
-    <div v-if="(!list || list.length === 0) && useInvoiceOrOffer().items.length === 0" class="text-center mt-20">
+    <div v-if="(!list || list.length === 0) && useDocument().items.length === 0" class="text-center mt-20">
       <div class="prose">
         <FaIcon
-          :icon="useInvoiceOrOffer().type() === 'offers' ? 'fa-solid fa-file-invoice' : 'fa-solid fa-file-invoice-dollar'"
+          :icon="useDocument().type() === 'offers' ? 'fa-solid fa-file-invoice' : 'fa-solid fa-file-invoice-dollar'"
           class="text-5xl text-accent"
         />
-        <h1 class="!text-accent mt-5">No {{ useInvoiceOrOffer().type() }}</h1>
+        <h1 class="!text-accent mt-5">No {{ useDocument().type() }}</h1>
         <p>
           It appears you have
-          <strong class="text-accent">no {{ useInvoiceOrOffer().type() }}</strong>
+          <strong class="text-accent">no {{ useDocument().type() }}</strong>
           created. Go ahead and create one.
         </p>
       </div>
       <div class="mt-10">
-        <NuxtLink :href="'/' + useInvoiceOrOffer().type() + '/new'" class="btn btn-primary btn-sm gap-2">
+        <NuxtLink :href="'/' + useDocument().type() + '/new'" class="btn btn-primary btn-sm gap-2">
           <FaIcon icon="fa-solid fa-plus-circle " />
-          new {{ useInvoiceOrOffer().singularType() }}
+          new {{ useDocument().singularType() }}
         </NuxtLink>
       </div>
     </div>
@@ -70,7 +70,7 @@ useInvoiceOrOffer().list(props.clientId);
             <th>#</th>
             <th>Client</th>
             <th>
-              {{ useInvoiceOrOffer().type() === "invoices" ? "Offer" : "Invoiced" }}
+              {{ useDocument().type() === "invoices" ? "Offer" : "Invoiced" }}
             </th>
             <th width="50"></th>
             <th>Date</th>
@@ -80,9 +80,9 @@ useInvoiceOrOffer().list(props.clientId);
           </tr>
         </thead>
         <tbody>
-          <tr class="hover" v-for="io in list || useInvoiceOrOffer().items" :key="io.id">
+          <tr class="hover" v-for="io in list || useDocument().items" :key="io.id">
             <td width="200">
-              <NuxtLink :href="'/' + (useInvoiceOrOffer().type() || type) + '/' + io.id" class="link">
+              <NuxtLink :href="'/' + (useDocument().type() || type) + '/' + io.id" class="link">
                 {{ io.number }}
               </NuxtLink>
               <br />
@@ -118,7 +118,7 @@ useInvoiceOrOffer().list(props.clientId);
               <span
                 class="btn btn-circle btn-xs mr-2"
                 :class="io.status === 'pending' ? (datefns.isPast(io.data.dueDate) ? 'btn-error' : '') : 'btn-success'"
-                @click="useInvoiceOrOffer().setStatus(io)"
+                @click="useDocument().setStatus(io)"
               >
                 <FaIcon :icon="io.status == 'pending' ? 'fa-regular fa-clock' : 'fa-check'" />
               </span>
@@ -145,7 +145,7 @@ useInvoiceOrOffer().list(props.clientId);
             <td width="50" class="text-right">
               <ContextMenu>
                 <li>
-                  <NuxtLink href="/#" @click="useInvoiceOrOffer().download(io)">
+                  <NuxtLink href="/#" @click="useDocument().download(io)">
                     <FaIcon icon="fa-regular fa-file-pdf" />
                     Download PDF
                   </NuxtLink>

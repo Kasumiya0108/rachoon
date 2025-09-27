@@ -8,6 +8,6 @@ const clientId = useRoute().params.id as string;
 
 <template>
   <div>
-    <InvoiceOrOfferList :clientId="clientId" />
+    <DocumentList :clientId="clientId" />
   </div>
 </template>

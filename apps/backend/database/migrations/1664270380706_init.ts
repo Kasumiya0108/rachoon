@@ -80,7 +80,7 @@ export default class UsersSchema extends BaseSchema {
       table.unique(['organization_id', 'number'])
     })
 
-    this.schema.createTable('invoice_or_offers', (table) => {
+    this.schema.createTable('documents', (table) => {
       table.increments('id').primary()
       table.string('type', 10)
       table.string('number', 100)
@@ -109,7 +109,7 @@ export default class UsersSchema extends BaseSchema {
   public async down() {
     this.schema.dropTable('api_tokens')
     this.schema.dropTable('users')
-    this.schema.dropTable('invoice_or_offers')
+    this.schema.dropTable('documents')
     this.schema.dropTable('clients')
     this.schema.dropTable('organizations')
   }

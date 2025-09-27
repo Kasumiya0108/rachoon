@@ -9,7 +9,7 @@ onMounted(async () => {
 });
 async function load() {
   loading.value = true;
-  images.value = props.example ? await useExample().preview(props.example) : await useInvoiceOrOffer().preview();
+  images.value = props.example ? await useExample().preview(props.example) : await useDocument().preview();
   loading.value = false;
 }
 </script>

@@ -1,5 +1,5 @@
 <script setup>
-	import ioTemplates from '@/templates/invoiceOrOffer'
+	import ioTemplates from '@/templates/document'
 	const variables = {
 		format: {
 			currency: 'use format.currency(value) to format numbers to locale',

@@ -1,7 +1,7 @@
 import { compose } from '@ioc:Adonis/Core/Helpers'
 import { DateTime } from 'luxon'
 import { column, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import InvoiceOrOffer from './InvoiceOrOffer'
+import Document from './Document'
 import Client from './Client'
 import User from './User'
 import HashIDs from 'App/Helpers/hashids'
@@ -23,8 +23,8 @@ export default class Organization extends compose(BaseModel, SoftDeletes) {
   @column()
   public settings: any
 
-  @hasMany(() => InvoiceOrOffer)
-  public invoicesOrOffers: HasMany<typeof InvoiceOrOffer>
+  @hasMany(() => Document)
+  public documents: HasMany<typeof Document>
   @hasMany(() => Client)
   public clients: HasMany<typeof Client>
 

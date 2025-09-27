@@ -1,11 +1,11 @@
 import Format from '@repo/common/Format'
 import Client from 'App/Models/Client'
-import InvoiceOrOffer from 'App/Models/InvoiceOrOffer'
+import Document from 'App/Models/Document'
 import User from 'App/Models/User'
 
 export default class Numberervice {
-  public static async invoiceOrOffer(user: User, type: string) {
-    const count = await InvoiceOrOffer.query()
+  public static async document(user: User, type: string) {
+    const count = await Document.query()
       .where({
         organizationId: user?.organizationId,
         type: type.toLowerCase(),

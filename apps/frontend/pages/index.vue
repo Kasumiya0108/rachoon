@@ -49,7 +49,7 @@ useDashboard().get();
       <div class="prose mb-5">
         <h2 class="text-warning">Pending invoices</h2>
       </div>
-      <InvoiceOrOfferList
+      <DocumentList
         :list="useDashboard().dashboard.invoices.pending"
         type="invoices"
       />
@@ -62,7 +62,7 @@ useDashboard().get();
       <div class="prose mb-5">
         <h2 class="text-warning">Pending Offers</h2>
       </div>
-      <InvoiceOrOfferList
+      <DocumentList
         :list="useDashboard().dashboard.offers.pending"
         type="offers"
       />

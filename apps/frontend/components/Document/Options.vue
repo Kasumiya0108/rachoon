@@ -1,5 +1,5 @@
 <script setup>
-const invoiceOrOffer = useInvoiceOrOffer().item;
+const document = useDocument().item;
 const taxOptions = useSettings().settings.taxes.options;
 </script>
 
@@ -13,9 +13,9 @@ const taxOptions = useSettings().settings.taxes.options;
       type="radio"
       name="taxoption"
       class="radio radio-warning radio-sm"
-      :disabled="useInvoiceOrOffer().offerToConvert.id !== ''"
-      @change="invoiceOrOffer.setTaxOption(o)"
-      :checked="o.title === invoiceOrOffer.data.taxOption.title"
+      :disabled="useDocument().offerToConvert.id !== ''"
+      @change="document.setTaxOption(o)"
+      :checked="o.title === document.data.taxOption.title"
     />
     <span class="label-text !text-base-content">{{ o.title }}</span>
   </label>

@@ -1,5 +1,5 @@
 import { Client } from "~~/models/client";
-import { InvoiceOrOffer } from "~~/models/invoiceOrOffer";
+import { Document } from "~~/models/document";
 
 export default defineStore("example", () => {
   const client = new Client();
@@ -29,7 +29,7 @@ export default defineStore("example", () => {
       invoiceDueDays: 0,
     },
   };
-  const invoice = new InvoiceOrOffer();
+  const invoice = new Document();
   invoice.type = "invoice";
   invoice.data.positions = [
     {
@@ -66,7 +66,7 @@ export default defineStore("example", () => {
   invoice.client = client;
   invoice.calculate();
 
-  const offer = new InvoiceOrOffer();
+  const offer = new Document();
   offer.type = "offer";
   offer.data.positions = [
     {

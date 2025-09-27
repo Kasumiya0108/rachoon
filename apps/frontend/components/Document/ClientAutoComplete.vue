@@ -7,14 +7,14 @@ const val = ref("");
   <TypeAhead
     class="input input-bordered input-sm w-full max-w-xs"
     placeholder="Type for autocomplete ..."
-    :items="useInvoiceOrOffer().clients"
+    :items="useDocument().clients"
     :minInputLength="1"
     :value="val"
     @onInput="(i) => (val = i.input)"
     @selectItem="
       (i: Client) => {
         val = `${i.name} (${i.number})`;
-        useInvoiceOrOffer().setClient(i);
+        useDocument().setClient(i);
       }
     "
     :itemProjection="

@@ -3,8 +3,8 @@
 		index: Number,
 	})
 
-	const invoiceOrOffer = useInvoiceOrOffer().invoiceOrOffer
-	const position = invoiceOrOffer.data.discountsCharges[props.index]
+	const document = useDocument().document
+	const position = document.data.discountsCharges[props.index]
 
 	watch(
 		computed(() => JSON.stringify(position.valueType)),
@@ -60,7 +60,7 @@
 		</td>
 
 		<td>
-			<button class="btn btn-square btn-sm mr-2 text-error" @click="invoiceOrOffer.removeDiscountCharge(index)">
+			<button class="btn btn-square btn-sm mr-2 text-error" @click="document.removeDiscountCharge(index)">
 				<FaIcon icon="fa-trash-can" />
 			</button>
 		</td>

@@ -6,6 +6,6 @@ definePageMeta({
 
 <template>
   <div>
-    <InvoiceOrOfferList />
+    <DocumentList />
   </div>
 </template>

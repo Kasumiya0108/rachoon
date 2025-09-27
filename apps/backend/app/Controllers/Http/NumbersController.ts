@@ -12,6 +12,6 @@ export default class AuthController {
       return NumberService.client(ctx.auth.user!)
     }
 
-    return NumberService.invoiceOrOffer(ctx.auth.user!, type)
+    return NumberService.document(ctx.auth.user!, type)
   }
 }

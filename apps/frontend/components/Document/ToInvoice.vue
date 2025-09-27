@@ -1,10 +1,10 @@
 <script setup lang="ts">
-	import { InvoiceOrOffer } from '~~/models/invoiceOrOffer'
+	import { Document } from '~~/models/document'
 
 	const props = defineProps({
 		offer: Object,
 	})
-	const offer = props.offer as InvoiceOrOffer
+	const offer = props.offer as Document
 	const option = ref('full')
 	const value = ref(null)
 	const valueType = ref('percent')

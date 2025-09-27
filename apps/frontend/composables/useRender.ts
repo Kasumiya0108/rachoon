@@ -7,8 +7,10 @@ export default async function useRender(object: any, preview: boolean = false): 
 
   const template = await useTemplate().get(tpl);
 
-  return await useHttp.post(`/api/render${preview ? "?preview=true" : ""}`, {
-    templateId: template.id,
-    data: object,
-  });
+  return (
+    await useHttp.post(`/api/render${preview ? "?preview=true" : ""}`, {
+      templateId: template.id,
+      data: object,
+    })
+  ).body;
 }

@@ -1,5 +1,5 @@
 import { Client } from "./Client";
-import { InvoiceOrOffer } from "./InvoiceOrOffer";
+import { Document } from "./Document";
 
 const client = new Client();
 client.name = "Example client";
@@ -28,7 +28,7 @@ client.data = {
     invoiceDueDays: 0,
   },
 };
-const invoice = new InvoiceOrOffer();
+const invoice = new Document();
 invoice.type = "invoice";
 invoice.data.positions = [
   {
@@ -65,7 +65,7 @@ invoice.data.discountsCharges = [
 invoice.client = client;
 invoice.calculate();
 
-const offer = new InvoiceOrOffer();
+const offer = new Document();
 offer.type = "offer";
 offer.data.positions = [
   {

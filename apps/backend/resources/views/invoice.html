@@ -79,7 +79,7 @@
       <section class="columns section">
        
         <div class="column">
-          <p>{{invoiceOrOffer.client.name}}<br />{{invoiceOrOffer.client.data.address.street}}</br>{{invoiceOrOffer.client.data.address.zip}} {{invoiceOrOffer.client.data.address.city}}<br />{{invoiceOrOffer.client.data.address.country}}</p>
+          <p>{{document.client.name}}<br />{{document.client.data.address.street}}</br>{{document.client.data.address.zip}} {{document.client.data.address.city}}<br />{{document.client.data.address.country}}</p>
         </div>
         <div class="column columns">
           <div class="column">
@@ -89,15 +89,15 @@
             
           </div>
           <div class="column has-text-right">
-            <h3>{{invoiceOrOffer.number}}</h3>
-            <p>{{invoiceOrOffer.date}}<br />
-            {{invoiceOrOffer.client.data.info.vat}}</p>
+            <h3>{{document.number}}</h3>
+            <p>{{document.date}}<br />
+            {{document.client.data.info.vat}}</p>
           </div>
         </div>
       </section>
     <section class="section content">
       <h1>Invoice</h1>
-      {{invoiceOrOffer.data.headingText | safe}}
+      {{document.data.headingText | safe}}
       <table class="table is-fullwidth is-narrow">
         <thead>
           <tr>
@@ -110,7 +110,7 @@
           </tr>
         </thead>
         <tbody>
-          {% for position in invoiceOrOffer.data.positions %}
+          {% for position in document.data.positions %}
           <tr>
             <td>{{position.idx}}.</td>
             <td><p>{{position.title}}</p>{{position.text | safe}}</td>
@@ -128,42 +128,42 @@
             <tbody>
               <tr>
                 <td>Nett</td>
-                <td class="has-text-right">{{invoiceOrOffer.data.net}}</td>
+                <td class="has-text-right">{{document.data.net}}</td>
               </tr>
               <tr>
                 <td>tax<br />
-                  {% for rate,tax in invoiceOrOffer.data.taxes %}
+                  {% for rate,tax in document.data.taxes %}
                   {{rate}}%<br />
                   {%endfor%}
                 </td>
                 <td class="has-text-right">
                   <br />
-                  {% for rate,tax in invoiceOrOffer.data.taxes %}
+                  {% for rate,tax in document.data.taxes %}
                   {{tax}}<br />
                   {%endfor%}
                 </td>
               </tr>
               <tr>
                 <td>discounts<br />
-                  {% for discountOrCharge in invoiceOrOffer.data.discountsCharges %}
+                  {% for discountOrCharge in document.data.discountsCharges %}
                   {{discountOrCharge.title}}<br />
                   {%endfor%}</td>
                 <td class="has-text-right"><br />
-                  {% for discountOrCharge in invoiceOrOffer.data.discountsCharges %}
+                  {% for discountOrCharge in document.data.discountsCharges %}
                   {{discountOrCharge.value}}<br />
                   {%endfor%}
                 </td>
               </tr>
               <tr>
                 <td><h2>Total</h2></td>
-                <td class="has-text-right"><h2>{{invoiceOrOffer.data.total}}</h2></td>
+                <td class="has-text-right"><h2>{{document.data.total}}</h2></td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
       <hr />
-      {{invoiceOrOffer.data.footerText | safe}}
+      {{document.data.footerText | safe}}
       </section>
     </main>
     

@@ -27,7 +27,7 @@ export default class extends BaseSchema {
       table.timestamp('updated_at', { useTz: true }).notNullable().defaultTo(DateTime.now().toSQL())
       table.timestamp('deleted_at', { useTz: true }).nullable()
     })
-    this.schema.alterTable('invoice_or_offers', (table) => {
+    this.schema.alterTable('documents', (table) => {
       table
         .integer('template_id')
         .unsigned()
@@ -39,7 +39,7 @@ export default class extends BaseSchema {
   }
 
   public async down() {
-    this.schema.alterTable('invoice_or_offers', (table) => {
+    this.schema.alterTable('documents', (table) => {
       table.dropColumn('template_id')
     })
     this.schema.dropTable(this.tableName)

@@ -1,5 +1,5 @@
 import * as dateFns from "date-fns";
-import { TaxOption, TaxRate } from "./invoiceOrOffer";
+import { TaxOption, TaxRate } from "./document";
 import _ from "lodash";
 interface SettingsData {
   general: {

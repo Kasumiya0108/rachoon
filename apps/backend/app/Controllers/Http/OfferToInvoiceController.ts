@@ -1,9 +1,9 @@
-import InvoiceOrOffer from 'App/Models/InvoiceOrOffer'
+import Document from 'App/Models/Document'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class OfferToInvoiceController {
   public async update(ctx: HttpContextContract) {
-    return await InvoiceOrOffer.query()
+    return await Document.query()
       .where({
         type: 'offer',
         id: ctx.request.param('id'),

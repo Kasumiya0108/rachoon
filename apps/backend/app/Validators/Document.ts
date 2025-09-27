@@ -1,6 +1,6 @@
 import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
 
-class InvoiceOrOfferValidator {
+class DocumentValidator {
   public schema = schema.create({
     clientId: schema.number(),
     number: schema.string(),
@@ -33,4 +33,4 @@ class StatusValidator {
   public messages: CustomMessages = {}
 }
 
-export { InvoiceOrOfferValidator, StatusValidator }
+export { DocumentValidator, StatusValidator }

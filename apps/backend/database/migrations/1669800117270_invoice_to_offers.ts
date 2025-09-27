@@ -4,12 +4,12 @@ export default class extends BaseSchema {
   protected tableName = 'invoice_to_offers'
 
   public async up() {
-    this.schema.alterTable('invoice_or_offers', (table) => {
+    this.schema.alterTable('documents', (table) => {
       table
         .integer('offer_id')
         .unsigned()
         .references('id')
-        .inTable('invoice_or_offers')
+        .inTable('documents')
         .onDelete('SET NULL')
 
       table.index('offer_id')
@@ -26,7 +26,7 @@ export default class extends BaseSchema {
   }
 
   public async down() {
-    this.schema.alterTable('invoice_or_offers', (table) => {
+    this.schema.alterTable('documents', (table) => {
       table.dropIndex('offer_id')
       table.dropColumn('offer_id')
     })

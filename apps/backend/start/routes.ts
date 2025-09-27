@@ -27,10 +27,10 @@ Route.group(() => {
     .only(['store', 'destroy'])
     .middleware({ destroy: ['auth'] })
   Route.group(() => {
-    Route.get('invoicesoroffers/duplicate/:id', 'InvoicesOrOffersController.duplicate')
+    Route.get('documents/duplicate/:id', 'DocumentsController.duplicate')
     Route.resource('number/:type', 'NumbersController').only(['index'])
-    Route.resource('invoicesoroffers/status', 'InvoicesOrOffersStatusController').only(['update'])
-    Route.resource('invoicesoroffers', 'InvoicesOrOffersController').apiOnly()
+    Route.resource('documents/status', 'DocumentsStatusController').only(['update'])
+    Route.resource('documents', 'DocumentsController').apiOnly()
     Route.resource('clients', 'ClientsController').apiOnly()
     Route.get('templates/default', 'TemplatesController.default')
     Route.get('templates/duplicate/:id', 'TemplatesController.duplicate')
