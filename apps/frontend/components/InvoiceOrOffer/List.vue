@@ -1,12 +1,3 @@
-<!-- 
-
-todo: 
-- reminders (probably automatically?)
-- reversals (cancellation, storno)
-- credit (gutschrift) ? 
-
- -->
-
 <script setup lang="ts">
 import { InvoiceOrOffer } from "~~/models/invoiceOrOffer";
 import * as datefns from "date-fns";
@@ -15,19 +6,13 @@ definePageMeta({
   layout: "core",
 });
 const props = defineProps({
-  list: Array<InvoiceOrOffer>,
-  type: String,
+  clientId: { type: String, default: "" },
 });
 
 const modal = ref(false);
 const offer = ref(new InvoiceOrOffer());
 
-function offerToInvoice(io: InvoiceOrOffer) {
-  offer.value = io;
-  modal.value = true;
-}
-
-useInvoiceOrOffer().list();
+useInvoiceOrOffer().list(props.clientId);
 </script>
 
 <template>

@@ -33,8 +33,8 @@ useClient().list();
             <tr>
               <th width="200">#</th>
               <th>Name</th>
-              <th width="100">Offers</th>
-              <th width="100">Invoices</th>
+              <th width="200">Offers</th>
+              <th width="200">Invoices</th>
             </tr>
           </thead>
           <tbody>
@@ -52,13 +52,13 @@ useClient().list();
                 <small class="opacity-50">{{ c.data.info.vat }}</small>
               </td>
               <td>
-                {{ c.totalOffers }}
+                <NuxtLink :to="`/offers/client/${c.id}`">{{ c.totalOffers }} Offers</NuxtLink>
                 <br />
                 <span v-if="c.pendingOffers > 0" class="text-error text-opacity-50">{{ c.pendingOffers }}</span>
                 &nbsp;
               </td>
               <td>
-                {{ c.totalInvoices }}
+                <NuxtLink :to="`/invoices/client/${c.id}`">{{ c.totalInvoices }} Invoices</NuxtLink>
                 <br />
                 <small v-if="c.pendingInvoices > 0" class="text-error text-opacity-50">pending {{ c.pendingInvoices }}</small>
                 &nbsp;

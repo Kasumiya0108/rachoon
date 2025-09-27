@@ -93,8 +93,8 @@ export default function useApi() {
             })) as InvoiceOrOfferType;
           }
         },
-        getAll: async (): Promise<InvoiceOrOffer[]> =>
-          ((await useHttp.get(`${endpoint}?type=${type}`)) as []).map((d) => new InvoiceOrOffer(d)),
+        getAll: async (clientId: string): Promise<InvoiceOrOffer[]> =>
+          ((await useHttp.get(`${endpoint}?type=${type}&clientId=${clientId}`)) as []).map((d) => new InvoiceOrOffer(d)),
         get: async (id: string): Promise<InvoiceOrOffer> => new InvoiceOrOffer(await useHttp.get(`${endpoint}/${id}`)),
         duplicate: async (id: string): Promise<InvoiceOrOffer> => await useHttp.get(`${endpoint}/duplicate/${id}`),
         delete: async (id: string) => await useHttp.del(`${endpoint}/${id}`),

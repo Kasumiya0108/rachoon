@@ -70,9 +70,9 @@ export default defineStore("invoiceOrOffer", () => {
     mustSave.value = 0;
   }
 
-  async function list() {
+  async function list($clientId: string) {
     loading.value = true;
-    invoicesOrOffers.value = await useApi().invoicesOrOffers(singularType()).getAll();
+    invoicesOrOffers.value = await useApi().invoicesOrOffers(singularType()).getAll($clientId);
     loading.value = false;
   }
 

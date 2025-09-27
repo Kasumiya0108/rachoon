@@ -8,6 +8,7 @@ export default class InvoicesOrOffersController {
     if (!['invoice', 'offer'].includes(ctx.request.qs()['type'])) {
       return ctx.response.badRequest('Type must be invoice or offer')
     }
+
     if (ctx.request.qs()['count']) {
       return await InvoiceOrOffer.query()
         .where({
@@ -22,10 +23,14 @@ export default class InvoicesOrOffersController {
         organizationId: ctx.auth.user?.organizationId,
         type: ctx.request.qs()['type'].toLowerCase(),
       })
+      .if(ctx.request.qs()['clientId'], (query) => {
+        query.where('client_id', ctx.request.qs()['clientId'])
+      })
       .preload('client')
       .preload('offer')
       .preload('invoices')
       .orderBy('created_at', 'desc')
+      .paginate(ctx.request.qs()['page'] || 1, ctx.request.qs()['perPage'] || 20)
   }
 
   public async store(ctx: HttpContextContract) {
