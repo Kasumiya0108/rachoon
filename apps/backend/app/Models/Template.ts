@@ -1,11 +1,10 @@
 import { DateTime } from 'luxon'
-import { compose } from '@ioc:Adonis/Core/Helpers'
-import { column, BaseModel, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { column, belongsTo, BelongsTo, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Organization from './Organization'
 import HashIDs from '../Helpers/hashids'
-import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
+import BaseAppModel from './BaseAppModel'
 
-export default class Template extends compose(BaseModel, SoftDeletes) {
+export default class Template extends BaseAppModel {
   public serializeExtras() {
     return {
       isGlobal: this.organizationId === null,

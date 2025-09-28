@@ -16,7 +16,7 @@ export default class ClientsController {
       .withCount('invoices', (query) => query.where({ status: 'pending' }).as('pendingInvoices'))
       .withCount('offers', (query) => query.as('totalOffers'))
       .withCount('offers', (query) => query.where({ status: 'pending' }).as('pendingOffers'))
-      .orderBy('created_at', 'desc')
+      .withScopes((scopes) => scopes.sortBy(ctx, Client.$columnsDefinitions))
       .paginate(ctx.request.qs()['page'] || 1, ctx.request.qs()['perPage'] || 20)
   }
 

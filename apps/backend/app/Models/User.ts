@@ -12,8 +12,9 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 import Organization from './Organization'
 import HashIDs from 'App/Helpers/hashids'
+import BaseAppModel from './BaseAppModel'
 
-export default class User extends compose(BaseModel, SoftDeletes) {
+export default class User extends BaseAppModel {
   public serializeExtras() {
     return {
       minutes: Number(this.$extras.minutes || 0),

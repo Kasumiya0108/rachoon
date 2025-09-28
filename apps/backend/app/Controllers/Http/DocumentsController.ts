@@ -29,7 +29,8 @@ export default class DocumentsController {
       .preload('client')
       .preload('offer')
       .preload('invoices')
-      .orderBy('created_at', 'desc')
+      .withScopes((scopes) => scopes.sortBy(ctx, Document.$columnsDefinitions))
+      .withScopes((scopes) => scopes.filterBy(ctx, Document.$columnsDefinitions))
       .paginate(ctx.request.qs()['page'] || 1, ctx.request.qs()['perPage'] || 20)
   }
 

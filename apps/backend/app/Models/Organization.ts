@@ -1,13 +1,12 @@
-import { compose } from '@ioc:Adonis/Core/Helpers'
 import { DateTime } from 'luxon'
-import { column, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Document from './Document'
 import Client from './Client'
 import User from './User'
 import HashIDs from 'App/Helpers/hashids'
-import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
+import BaseAppModel from './BaseAppModel'
 
-export default class Organization extends compose(BaseModel, SoftDeletes) {
+export default class Organization extends BaseAppModel {
   @column({ isPrimary: true, serialize: (val) => HashIDs.encode(val) })
   public id: number
 

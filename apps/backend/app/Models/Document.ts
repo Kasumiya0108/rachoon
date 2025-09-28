@@ -1,8 +1,6 @@
-import { compose } from '@ioc:Adonis/Core/Helpers'
 import { DateTime } from 'luxon'
 import { Document as CommonDocument } from '@repo/common/Document'
 import {
-  BaseModel,
   beforeSave,
   BelongsTo,
   belongsTo,
@@ -15,10 +13,10 @@ import {
 import Client from './Client'
 import Organization from './Organization'
 import HashIDs from 'App/Helpers/hashids'
-import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
 import Template from './Template'
+import BaseAppModel from './BaseAppModel'
 
-export default class Document extends compose(BaseModel, SoftDeletes) {
+export default class Document extends BaseAppModel {
   @beforeSave()
   public static async calculate(document: Document) {
     const io = new CommonDocument(document.serialize())

@@ -1,12 +1,11 @@
 import { DateTime } from 'luxon'
-import { compose } from '@ioc:Adonis/Core/Helpers'
 import { column, BaseModel, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Organization from './Organization'
-import HashIDs from '../Helpers/hashids'
+import HashIDs from 'App/Helpers/hashids'
 import Document from './Document'
-import { SoftDeletes } from '@ioc:Adonis/Addons/LucidSoftDeletes'
+import BaseAppModel from './BaseAppModel'
 
-export default class Client extends compose(BaseModel, SoftDeletes) {
+export default class Client extends BaseAppModel {
   public serializeExtras() {
     return {
       totalInvoices: Number(this.$extras.totalInvoices || 0),

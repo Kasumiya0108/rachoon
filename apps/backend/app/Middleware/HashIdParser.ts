@@ -17,6 +17,17 @@ export default class HashIdParser {
         q[k] = HashIDs.decode(q[k])
       }
     })
+    if (q.filter) {
+      Object.keys(q.filter).forEach((k) => {
+        if (k.endsWith('Id') || k.endsWith('_id') || k === 'id') {
+          Object.keys(q.filter[k]).forEach((v) => {
+            const nv = v.replace('%3D', '=')
+            q.filter[k][nv] = HashIDs.decode(q.filter[k][v])
+            delete q.filter[k][v]
+          })
+        }
+      })
+    }
     await next()
   }
 

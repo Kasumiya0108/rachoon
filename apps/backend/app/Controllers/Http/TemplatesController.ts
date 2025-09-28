@@ -23,7 +23,7 @@ export default class TemplatessController {
       .where({ organizationId: ctx.auth.user?.organizationId })
       .orWhere({ organizationId: null, premium: false })
       .orderBy('organization_id', 'desc')
-      .orderBy('created_at', 'desc')
+      .withScopes((scopes) => scopes.sortBy(ctx, Template.$columnsDefinitions))
       .paginate(ctx.request.qs()['page'] || 1, ctx.request.qs()['perPage'] || 20)
   }
 
