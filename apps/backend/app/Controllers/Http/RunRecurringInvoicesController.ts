@@ -12,6 +12,7 @@ export default class RunRecurringInvoicesController {
     const recurrings = await RecurringInvoice.query()
       .where('startDate', '<=', today)
       .andWhere('nextRun', '<=', today)
+      .andWhere('active', true)
       .preload('invoice')
 
     for (const recurring of recurrings) {

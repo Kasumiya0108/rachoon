@@ -18,6 +18,9 @@ export default class RecurringInvoice extends BaseAppModel {
   @column()
   public nextRun: DateTime
 
+  @column()
+  public active: boolean
+
   @column({ serialize: (val) => HashIDs.encode(val) })
   public organizationId: number
 

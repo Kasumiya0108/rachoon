@@ -6,16 +6,16 @@ const controller = () => useDocument();
 const pattern = ref("");
 const patternString = computed(() => {
   try {
-    return cronstrue.toString(controller().item.recurringData.cron, { use24HourTimeFormat: true });
+    return cronstrue.toString(controller().recurring.cron, { use24HourTimeFormat: true });
   } catch (e) {
     return "";
   }
 });
 
-const custom = computed(() => controller().item.recurringData.cron);
+const custom = computed(() => controller().recurring.cron);
 
 const predefinedPatterns = computed(() => {
-  const date = controller().item.recurringData.startDate;
+  const date = controller().recurring.startDate;
   let day = `${date.getDate()}`;
   if (date.getDate() > 28 && getDaysInMonth(date) > 28) {
     day = `L-${getDaysInMonth(date) - date.getDate() + 1}`;
@@ -24,24 +24,24 @@ const predefinedPatterns = computed(() => {
     day = "L";
   }
   return {
-    weekly: `0 0 * * ${controller().item.recurringData.startDate.getDay()}`, // every week on Sunday
+    weekly: `0 0 * * ${controller().recurring.startDate.getDay()}`, // every week on Sunday
     monthly: `0 0 ${day} * *`, // every month on the 1st
-    yearly: `0 0 ${controller().item.recurringData.startDate.getDate()} ${controller().item.recurringData.startDate.getMonth()} *`, // every year on January 1st
+    yearly: `0 0 ${controller().recurring.startDate.getDate()} ${controller().recurring.startDate.getMonth()} *`, // every year on January 1st
   };
 });
 
-watch([pattern, () => controller().item?.recurringData.cron.toString()], () => {
-  if (controller().item.recurringData.cron !== "") {
-    pattern.value = controller().item.recurringData.cron;
+watch([pattern, () => controller().recurring.cron.toString()], () => {
+  if (controller().recurring.cron !== "") {
+    pattern.value = controller().recurring.cron;
   } else {
-    controller().item.recurringData.cron = pattern.value;
+    controller().recurring.cron = pattern.value;
   }
 });
 
 watch(
-  () => controller().item.recurringData.startDate.toString(),
+  () => controller().recurring.startDate.toString(),
   () => {
-    controller().item.recurringData.cron = predefinedPatterns.value.monthly;
+    controller().recurring.cron = predefinedPatterns.value.monthly;
   },
 );
 
@@ -52,12 +52,12 @@ const emit = defineEmits(["close"]);
   <div class="flex gap-4">
     <div>
       <label class="label">Start</label>
-      <DatePicker v-model="controller().item.recurringData.startDate" class="max-w-32" />
+      <DatePicker v-model="controller().recurring.startDate" class="max-w-32" />
     </div>
 
     <div class="form-control">
       <label class="label">Repeat every</label>
-      <select class="select select-bordered select-sm bg-base-300" v-model="controller().item.recurringData.cron">
+      <select class="select select-bordered select-sm bg-base-300" v-model="controller().recurring.cron">
         <option :value="predefinedPatterns.weekly">Week</option>
         <option :value="predefinedPatterns.monthly">Month</option>
         <option :value="predefinedPatterns.yearly">Year</option>
@@ -67,7 +67,7 @@ const emit = defineEmits(["close"]);
     <div class="flex-grow"></div>
     <div>
       <label class="label">Active</label>
-      <input type="checkbox" class="toggle toggle-success toggle-sm mt-1" v-model="controller().item.recurring" />
+      <input type="checkbox" class="toggle toggle-success toggle-sm mt-1" v-model="controller().recurring.active" />
     </div>
   </div>
   <div class="form-control my-3">
@@ -78,7 +78,7 @@ const emit = defineEmits(["close"]);
       type="text"
       placeholder="* * * * *"
       class="input input-bordered input-sm bg-base-300 w-48"
-      v-model="controller().item.recurringData.cron"
+      v-model="controller().recurring.cron"
     />
     <span>
       <small>
@@ -91,8 +91,8 @@ const emit = defineEmits(["close"]);
   <div class="divider"></div>
   <div class="flex justify-between">
     <div>
-      <small v-if="controller().item.recurring && patternString !== ''">
-        Will start on {{ controller().item?.recurringData.startDate.toLocaleDateString() }} and repeat {{ patternString }}
+      <small v-if="controller().recurring.active && patternString !== ''">
+        Will start on {{ controller().recurring.startDate.toLocaleDateString() }} and repeat {{ patternString }}
       </small>
     </div>
     <button class="btn btn-sm btn-neutral" @click="emit('close')">OK</button>

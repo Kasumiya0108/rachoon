@@ -24,6 +24,7 @@ export default class extends BaseSchema {
       table.date('deleted_at').nullable()
       table.date('start_date').notNullable()
       table.date('next_run').notNullable()
+      table.boolean('active').notNullable().defaultTo(false)
 
       table.index('start_date')
       table.index('next_run')

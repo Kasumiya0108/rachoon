@@ -1,5 +1,5 @@
 import { Client, type ClientType } from "~~/models/client";
-import { Document } from "~~/models/document";
+import { Document, Recurring } from "~~/models/document";
 import Helpers from "@repo/common/Helpers";
 
 import * as dateFns from "date-fns";
@@ -13,6 +13,7 @@ class DocumentStore extends Base<Document> {
   mustSave = ref(-1);
   offerToConvert = ref(new Document());
   reminderInvoice = ref(new Document());
+  recurring = ref(new Recurring());
   parentList = this.list;
 
   setTemplate = (id: string) => {

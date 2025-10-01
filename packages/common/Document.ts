@@ -3,6 +3,36 @@ import { ClientType } from "./Client";
 import _ from "lodash";
 import Helpers from "./Helpers";
 
+export interface RecurringType {
+  id: string;
+  cron: string;
+  active: boolean;
+  startDate: Date;
+  nextRun: Date;
+  invoiceId: string;
+}
+
+class Recurring implements RecurringType {
+  id: string = "";
+  cron: string = "";
+  active: false;
+  startDate: Date = new Date();
+  nextRun: Date = new Date();
+  invoiceId: string = "";
+  invoice: DocumentType;
+
+  constructor(json?: any) {
+    if (json) {
+      Helpers.merge(this, json);
+      this.startDate = new Date(Date.parse(json.startDate.toString()));
+      this.nextRun = new Date(Date.parse(json.nextRun.toString()));
+    }
+  }
+  public toJSON() {
+    return { ...this };
+  }
+}
+
 export interface Position {
   id?: number;
   title: string;
@@ -325,4 +355,4 @@ class Document implements DocumentType {
   }
 }
 
-export { Document };
+export { Document, Recurring };

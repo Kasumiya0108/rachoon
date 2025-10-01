@@ -8,4 +8,7 @@ export class Base<T> {
       _.merge(this, json);
     }
   }
+  public toJSON() {
+    return { ...this };
+  }
 }
