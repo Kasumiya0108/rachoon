@@ -4,6 +4,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Leckerli+One&family=Cantarell:wght@200;400;700&display=swap");
 @import "@vuepic/vue-datepicker/dist/main.css";
+@import "vue3-toastify/dist/index.css";
 
 * {
   scrollbar-width: thin;
@@ -139,15 +140,15 @@ select:focus {
 }
 
 .notification.alert {
-  @apply bg-primary text-black;
-  &.success {
-    @apply bg-success text-black;
+  @apply bg-base-100 text-base text-sm bordered rounded-md border-base-300;
+  &.success .fa-icon {
+    @apply text-success;
   }
-  &.info {
-    @apply bg-info text-black;
+  &.info .fa-icon {
+    @apply text-info;
   }
-  &.error {
-    @apply bg-error text-black;
+  &.error .fa-icon {
+    @apply text-error;
   }
 }
 

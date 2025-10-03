@@ -1,4 +1,5 @@
 import camelcaseKeys from "camelcase-keys";
+import { toast } from "vue3-toastify";
 
 type FetchMethod = "get" | "post" | "put" | "delete" | "patch" | "head" | "options";
 
@@ -37,11 +38,12 @@ export default class HttpClient {
       });
 
       if (notify) {
-        useNotification().notify({
-          title: notify.title,
-          text: notify.text,
-          type: notify.type,
-        });
+        toast(notify.title, { theme: "auto", type: notify.type, position: "bottom-right" });
+        // useNotification().notify({
+        //   title: notify.title,
+        //   text: notify.text,
+        //   type: notify.type,
+        // });
       }
 
       return { body: camelcaseKeys(res._data as any, { deep: true }), headers: res.headers };

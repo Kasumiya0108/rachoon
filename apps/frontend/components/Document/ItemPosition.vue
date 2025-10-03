@@ -92,29 +92,30 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
               </td>
               <td width="200" class="text-right">
                 <span class="text-info">{{ useFormat.toCurrency(position.net) }}</span>
-                <!-- <Popper arrow hover> -->
-                <!--   <span class="text-info">{{ useFormat.toCurrency(position.net) }}</span> -->
-                <!--   <template #content> -->
-                <!--     <div class="text-xs"> -->
-                <!--       {{ useFormat.toCurrency(position.netNoDiscount) }} -->
-                <!--       <br /> -->
-                <!--       {{ position.net - position.netNoDiscount === 0 ? "" : useFormat.toCurrency(position.net - -->
-                <!--       position.netNoDiscount) }} -->
-                <!--       <br /> -->
-                <!--       ----------- -->
-                <!--       <br /> -->
-                <!--       {{ useFormat.toCurrency(position.net) }} -->
-                <!--       <br /> -->
-                <!--       tax: {{ useFormat.toCurrency(position.total - position.net) }} -->
-                <!--       <br /> -->
-                <!--       ----------- -->
-                <!--       <br /> -->
-                <!--       {{ useFormat.toCurrency(position.total) }} -->
-                <!--       <br /> -->
-                <!--     </div> -->
-                <!--   </template> -->
-                <!-- </Popper> -->
+                <!--   <Popper arrow hover> -->
+                <!--     <span class="text-info">{{ useFormat.toCurrency(position.net) }}</span> -->
+                <!--     <template #content> -->
+                <!--       <div class="text-xs"> -->
+                <!--         {{ useFormat.toCurrency(position.netNoDiscount) }} -->
+                <!--         <br /> -->
+                <!--         {{ position.net - position.netNoDiscount === 0 ? "" : useFormat.toCurrency(position.net - position.netNoDiscount) }} -->
+                <!--         <br /> -->
+                <!--         ----------- -->
+                <!--         <br /> -->
+                <!--         {{ useFormat.toCurrency(position.net) }} -->
+                <!--         <br /> -->
+                <!--         tax: {{ useFormat.toCurrency(position.total - position.net) }} -->
+                <!--         <br /> -->
+                <!--         ----------- -->
+                <!--         <br /> -->
+                <!--         {{ useFormat.toCurrency(position.total) }} -->
+                <!--         <br /> -->
+                <!--       </div> -->
+                <!--     </template> -->
+                <!--   </Popper> -->
+                <!-- </td> -->
               </td>
+
               <td width="50">
                 <button
                   class="btn btn-square btn-sm mr-2 text-error"

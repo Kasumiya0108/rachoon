@@ -234,6 +234,9 @@ importers:
       vue3-simple-typeahead:
         specifier: ^1.0.11
         version: 1.0.11(vue@3.4.27)
+      vue3-toastify:
+        specifier: ^0.2.8
+        version: 0.2.8(vue@3.4.27)
       vuedraggable:
         specifier: ^4.1.0
         version: 4.1.0(vue@3.4.27)
@@ -13434,6 +13437,18 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       vue: ^3.0.5
+    dependencies:
+      vue: 3.4.27
+    dev: false
+
+  /vue3-toastify@0.2.8(vue@3.4.27):
+    resolution: {integrity: sha512-8jDOqsJaBZEbGpCbhWDETJc11D1lZefvgFPq/IPdM+U7+qyXoVPDvK6uq/FIgyV7qV0NcNzvGBMEzjsLQqGROw==}
+    engines: {node: '>=20', npm: '>=9.0.0'}
+    peerDependencies:
+      vue: '>=3.2.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
     dependencies:
       vue: 3.4.27
     dev: false

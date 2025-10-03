@@ -28,7 +28,7 @@ class Recurring implements RecurringType {
       this.nextRun = new Date(Date.parse(json.nextRun.toString()));
     }
   }
-  public toJSON() {
+  toJSON() {
     return { ...this };
   }
 }
@@ -159,19 +159,18 @@ class Document implements DocumentType {
     }
   }
 
-  public setTaxOption(option: TaxOption) {
+  setTaxOption = (option: TaxOption) => {
     this.data.taxOption = option;
-  }
+  };
 
-  public calculate() {
+  calculate() {
     this.calcPositions();
     this.calcTaxes();
     this.calcNet();
     this.calcTotal();
   }
 
-  rebuild = () => {
-    console.log("rebuild");
+  rebuild() {
     this.data.dueDays = dateFns.differenceInCalendarDays(
       this.data.dueDate,
       this.data.date,
@@ -187,21 +186,20 @@ class Document implements DocumentType {
     this.timeout = setTimeout(() => {
       this.calculate();
     }, 100);
-  };
+  }
 
-  public errors(): string[] {
+  errors = (): string[] => {
     const e = [];
     if (this.clientId === null) {
       e.push("You need to select a client");
     }
     return e;
-  }
+  };
 
-  public convertedFromOffer = () =>
-    this.offerId !== null && this.offerId !== "";
-  public disabled = () => this.convertedFromOffer() || this.type === "reminder";
+  convertedFromOffer = () => this.offerId !== null && this.offerId !== "";
+  disabled = () => this.convertedFromOffer() || this.type === "reminder";
 
-  protected calcPositions() {
+  calcPositions = () => {
     let sumPositions = this.data.positions.reduce(
       (p, c) => (p += c.quantity * c.price),
       0,
@@ -254,13 +252,13 @@ class Document implements DocumentType {
       }
       p.total = p.net + p.taxPrice;
     });
-  }
+  };
 
-  public setStatus(status: string) {
+  setStatus(status: string) {
     this.status = status;
   }
 
-  protected calcTotal() {
+  calcTotal() {
     this.data.total = 0;
     this.data.total += Math.round(this.data.net * 100) / 100;
     if (this.data.taxOption?.applicable) {
@@ -270,12 +268,12 @@ class Document implements DocumentType {
     }
   }
 
-  protected calcNet() {
+  calcNet() {
     this.data.net = 0;
     this.data.net = this.data.positions.reduce((p, c) => (p += c.net), 0);
   }
 
-  protected calcTaxes() {
+  calcTaxes() {
     this.data.taxes = {};
     if (this.data.taxOption?.applicable) {
       const rates: { [_: number]: number } = {};
@@ -289,7 +287,7 @@ class Document implements DocumentType {
     }
   }
 
-  public addPosition(
+  addPosition(
     pos: Position = {
       id: Date.now(),
       title: "",
@@ -310,7 +308,7 @@ class Document implements DocumentType {
     this.data.positions.push({ ...pos });
   }
 
-  public removePosition(index: number) {
+  removePosition(index: number) {
     this.data.positions.splice(index, 1);
 
     if (this.data.positions.length === 0) {
@@ -318,15 +316,15 @@ class Document implements DocumentType {
     }
   }
 
-  public removePositions() {
+  removePositions() {
     this.data.positions.splice(0, this.data.positions.length);
   }
 
-  public removeDiscountCharge(index: number) {
+  removeDiscountCharge(index: number) {
     this.data.discountsCharges.splice(index, 1);
   }
 
-  public addDiscountCharge(
+  addDiscountCharge(
     d: DiscountCharge = {
       id: Date.now().toString(),
       title: "",
@@ -339,12 +337,12 @@ class Document implements DocumentType {
     this.data.discountsCharges.push(d);
   }
 
-  public focusPosition(index: number) {
+  focusPosition(index: number) {
     this.data.positions.map((p) => (p.focused = false));
     this.data.positions[index].focused = true;
   }
 
-  public toJSON() {
+  toJSON() {
     return { ...this };
   }
 }
