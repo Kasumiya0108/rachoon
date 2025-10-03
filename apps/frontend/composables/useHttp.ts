@@ -1,8 +1,6 @@
 import camelcaseKeys from "camelcase-keys";
-import { toast } from "vue3-toastify";
 
 type FetchMethod = "get" | "post" | "put" | "delete" | "patch" | "head" | "options";
-
 export default class HttpClient {
   public static get = async (url: string, notify: false | { title: string; text: string; type?: string } = false) =>
     await this.doFetch(url, { method: "get" }, notify);
@@ -37,19 +35,15 @@ export default class HttpClient {
         headers: headers,
       });
 
+      const { $toast } = useNuxtApp();
+
       if (notify) {
-        toast(`<div class="text-sm"><div><strong>${notify.title}</strong></div><div>${notify.text}</div></div>`, {
+        $toast(`<div class="text-sm"><div><strong>${notify.title}</strong></div><div>${notify.text}</div></div>`, {
           theme: "auto",
-          class: "",
           type: notify.type,
           position: "bottom-right",
           dangerouslyHTMLString: true,
         });
-        // useNotification().notify({
-        //   title: notify.title,
-        //   text: notify.text,
-        //   type: notify.type,
-        // });
       }
 
       return { body: camelcaseKeys(res._data as any, { deep: true }), headers: res.headers };
@@ -71,11 +65,13 @@ export default class HttpClient {
         message = "Email and password do not match";
       }
     }
+    const { $toast } = useNuxtApp();
 
-    useNotification().notify({
-      title: title,
-      text: message,
+    $toast(`<div class="text-sm"><div><strong>${title}</strong></div><div>${text}</div></div>`, {
+      theme: "auto",
       type: "error",
+      position: "bottom-right",
+      dangerouslyHTMLString: true,
     });
   }
 }
