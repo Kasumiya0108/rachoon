@@ -1,5 +1,4 @@
-import * as dateFnsLocale from "date-fns/locale";
-import * as dateFns from "date-fns";
+import { DateTime } from "luxon";
 
 export default class Format {
   static toCurrency(value: any, locale: string, currency: string) {
@@ -12,15 +11,17 @@ export default class Format {
   }
 
   static date(value: any, locale: string) {
-    const loc = dateFnsLocale[locale || "enUS"];
-    return dateFns.format(Date.parse(value), "P", { locale: loc });
-    // const formatter = new Intl.DateTimeFormat(useSettings().settings.general.locale)
-    // return formatter.format(Date.parse(value))
+    console.log(value);
+    return DateTime.fromObject(value)
+      .setLocale(locale)
+      .toLocaleString(DateTime.DATE_SHORT); // const formatter = new Intl.DateTimeFormat(locale);
+    // return formatter.format(Date.parse(value));
   }
 
   static longDate(value: any, locale: string) {
-    const loc = dateFnsLocale[locale || "enUS"];
-    return dateFns.format(Date.parse(value), "PPPP", { locale: loc });
+    return DateTime.fromObject(value)
+      .setLocale(locale)
+      .toLocaleString(DateTime.DATE_FULL);
   }
 
   static max100(val: string) {

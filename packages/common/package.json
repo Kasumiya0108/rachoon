@@ -15,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "date-fns": "^4.1.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "luxon": "^3.3.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.1"

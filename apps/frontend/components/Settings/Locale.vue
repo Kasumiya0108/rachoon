@@ -1,6 +1,5 @@
 <script setup>
-import * as dateFns from "date-fns";
-const date = dateFns.format(Date.now(), "yyyy-MM-dd H:m:s");
+import Format from "@repo/common/Format";
 </script>
 <template>
   <FormSection title="Locale" description="Set currency and Date format">
@@ -28,11 +27,11 @@ const date = dateFns.format(Date.now(), "yyyy-MM-dd H:m:s");
       <div class="w-1/2 prose">
         <p>Currency preview</p>
         <h2 class="m-0 p-0">
-          {{ useFormat.toCurrency(100000) }}
+          {{ Format.toCurrency(100000, useSettings().settings.general.locale, useSettings().settings.general.currency) }}
         </h2>
         <p class="mt-5">Date preview</p>
         <h2 class="m-0 p-0">
-          {{ useFormat.date(date) }}
+          {{ Format.date(new Date(), useSettings().settings.general.locale) }}
         </h2>
       </div>
     </div>
