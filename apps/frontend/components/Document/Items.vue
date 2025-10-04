@@ -5,7 +5,7 @@ const discountsCharges = document.data.discountsCharges;
 </script>
 
 <template>
-  <table class="table table-compact table-zebra w-full">
+  <table class="table table-compact table-sm w-full">
     <thead>
       <tr>
         <th width="20" class="bg-info bg-opacity-10 bg-op"></th>
@@ -31,7 +31,8 @@ const discountsCharges = document.data.discountsCharges;
       Add position
     </button>
   </div>
-  <table class="table table-compact table-zebra w-full shadow-lg table-info" v-if="discountsCharges.length > 0">
+  <div class="divider"></div>
+  <table class="table table-compact w-full shadow-lg table-info" v-if="discountsCharges.length > 0">
     <thead>
       <tr>
         <th width="20"></th>

@@ -17,9 +17,6 @@ onMounted(() => {
   );
 });
 
-const previewModal = ref(false);
-const recurringModal = ref(false);
-
 definePageMeta({
   layout: "core",
 });
@@ -27,6 +24,10 @@ definePageMeta({
 async function save() {
   await controller().save();
 }
+
+const previewModal = ref(null);
+const settingsModal = ref(null);
+const recurringModal = ref(null);
 </script>
 <template>
   <Loading v-if="controller().loading" />
@@ -34,49 +35,40 @@ async function save() {
   <div v-else>
     <FormHeader :title="`${controller().singularType(true)}`" icon="fa-file-invoice-dollar">
       <template #buttons>
-        <select class="select select-bordered select-sm bg-base-300 max-w-56" v-model="controller().item.templateId">
-          <option value="null" key="default">Default Template</option>
-          <option v-for="u in controller().templates" :value="u.id" :key="u.title">
-            {{ u.title }}
-          </option>
-        </select>
         <label
           v-if="controller().item.isRecurring || controller().item.id === ''"
-          class="btn btn-sm btn-neutral"
-          for="recurring-modal"
-          @click="recurringModal = true"
+          class="btn btn-sm btn-ghost btn-circle"
+          @click="recurringModal.showModal()"
         >
           <FaIcon icon="fa-solid fa-repeat" :class="`${controller().recurring.active ? 'text-success' : ''}`" />
-          Recurring
         </label>
 
-        <label class="btn btn-sm btn-neutral" for="preview-modal" @click="previewModal = true">
+        <label class="btn btn-sm btn-ghost btn-circle" for="preview-modal" @click="previewModal.showModal()">
           <FaIcon icon="fa-solid fa-eye" />
         </label>
         <button
-          class="btn btn-sm btn-neutral"
+          class="btn btn-sm btn-ghost"
           @click="controller().download()"
           v-if="controller().item.id !== '' && controller().mustSave <= 1"
         >
           <FaIcon icon="fa-solid fa-file-pdf" />
         </button>
-        <button class="btn btn-sm btn-neutral" @click="controller().duplicate(controller().item.id)">
+        <button class="btn btn-sm btn-ghost btn-circle" @click="controller().duplicate(controller().item.id)">
           <FaIcon icon="fa-solid fa-copy " />
         </button>
 
-        <span class="btn btn-sm btn-neutral cursor-pointer">
-          <FaIcon icon="fa-solid fa-gear" />
-        </span>
-
         <NuxtLink
           :to="`/reminders/new?invoice=${controller().item.id}`"
-          class="btn btn-sm btn-neutral"
+          class="btn btn-sm btn-ghost btn-circle"
           v-if="controller().item.type === 'invoice' && controller().item.id !== ''"
         >
-          <FaIcon icon="fa-solid fa-bell" />
+          <FaIcon icon="fa-solid fa-file-lines" />
         </NuxtLink>
+        <label class="btn btn-sm btn-ghost btn-circle cursor-pointer" @click="settingsModal.showModal()">
+          <FaIcon icon="fa-solid fa-gear" />
+        </label>
 
-        <button class="btn btn-sm btn-error gap-2 btn-outline" v-if="controller().item.id !== ''" @click="controller().del()">
+        <button class="btn btn-sm btn-ghost text-error gap-2" v-if="controller().item.id !== ''" @click="controller().del()">
           <FaIcon icon="fa-solid fa-close" />
           Delete
         </button>
@@ -87,23 +79,23 @@ async function save() {
         </button>
       </template>
     </FormHeader>
-    <div v-if="previewModal">
-      <input type="checkbox" id="preview-modal" class="modal-toggle" />
-      <label for="preview-modal" class="modal cursor-pointer">
-        <label class="modal-box relative" for="preview-modal">
-          <Preview />
-        </label>
-      </label>
-    </div>
+    <dialog ref="previewModal" class="modal">
+      <div class="modal-box">
+        <Preview />
+      </div>
+    </dialog>
 
-    <div v-if="recurringModal">
-      <input type="checkbox" id="recurring-modal" class="modal-toggle" />
-      <label for="recurring-modal" class="modal cursor-pointer">
-        <label class="modal-box relative bordered" for="recurring-modal">
-          <DocumentRecurringForm @close="recurringModal = false" />
-        </label>
-      </label>
-    </div>
+    <dialog ref="settingsModal" class="modal">
+      <div class="modal-box">
+        <DocumentSettings />
+      </div>
+    </dialog>
+
+    <dialog ref="recurringModal" class="modal">
+      <div class="modal-box">
+        <DocumentRecurringForm />
+      </div>
+    </dialog>
 
     <ul v-if="controller().hasErrors" class="border-1 border-warning rounded p-5 mt-5 mb-10 mx-5">
       <li v-for="e in controller().item.errors()" class="text-warning">
@@ -153,17 +145,11 @@ async function save() {
             </h2>
           </div>
           <label class="label">
-            <span class="label-text">
-              <FaIcon icon="fa-solid fa-calendar-days" />
-              Invoice date:
-            </span>
+            <span class="label-text">Invoice date:</span>
           </label>
           <DatePicker v-model="controller().item.data.date" />
           <label class="label">
-            <span class="label-text">
-              <FaIcon icon="fa-solid fa-calendar-check" />
-              Due date:
-            </span>
+            <span class="label-text">Due date:</span>
           </label>
           <DatePicker v-model="controller().item.data.dueDate" />
         </div>
@@ -179,10 +165,10 @@ async function save() {
     </div>
     <DocumentItems />
     <div class="divider p-0 m-0"></div>
-    <div class="flex flex-row gap-5 px-10">
+    <div class="flex flex-row gap-5 px-10 bg-base-100 py-5">
       <div class="basis-2/4"></div>
       <div class="basis-1/4">
-        <DocumentOptions v-if="controller().type() !== 'reminders'" />
+        <DocumentTaxOptions v-if="controller().type() !== 'reminders'" />
       </div>
 
       <div class="basis-1/4">

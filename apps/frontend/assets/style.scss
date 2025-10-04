@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&family=Cantarell:wght@200;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&family=Gantari:wght@200;400;700&display=swap");
 @import "@vuepic/vue-datepicker/dist/main.css";
 @import "vue3-toastify/dist/index.css";
 
@@ -28,7 +28,7 @@
 
 html,
 body {
-  font-family: "Cantarell";
+  font-family: "Gantari";
   @apply bg-base-200 #{!important};
 }
 
@@ -242,7 +242,7 @@ input::placeholder {
 }
 
 .modal {
-  @apply bg-base-300 bg-opacity-80 backdrop-blur-md;
+  @apply bg-base-300 bg-opacity-30 backdrop-blur-md;
 }
 
 .simple-html * {
@@ -275,4 +275,12 @@ input::placeholder {
 .menu a:focus,
 .menu a:hover {
   @apply text-base-content bg-base-300 #{!important};
+}
+
+table table td {
+  @apply border-none;
+}
+
+.btn-ghost svg {
+  /* @apply text-base-300; */
 }

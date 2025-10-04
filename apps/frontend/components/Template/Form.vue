@@ -26,13 +26,13 @@ const vars = ref(JSON.stringify(variables, null, 2));
     <div>
       <FormHeader title="Template Editor" icon="fa-palette">
         <template #buttons>
-          <button class="btn btn-sm btn-neutral">
+          <button class="btn btn-sm btn-ghost btn-circle">
             <FaIcon icon="fa-solid fa-eye" />
           </button>
-          <button type="button" @click="controller().duplicate(controller().item.id)" class="btn btn-sm btn-neutral">
+          <button type="button" @click="controller().duplicate(controller().item.id)" class="btn btn-sm btn-ghost btn-circle">
             <FaIcon icon="fa-solid fa-copy" />
           </button>
-          <button v-if="!controller().item.isGlobal" type="button" class="btn btn-sm btn-error btn-outline">
+          <button v-if="!controller().item.isGlobal" type="button" class="btn btn-sm btn-ghost text-error">
             <FaIcon icon="fa-solid fa-close" />
             Delete
           </button>
@@ -65,7 +65,7 @@ const vars = ref(JSON.stringify(variables, null, 2));
           />
           <div class="form-control w-24 mt-3">
             <label class="cursor-pointer label">
-              <input type="checkbox" v-model="controller().item.default" class="checkbox checkbox-sm" />
+              <input type="checkbox" v-model="controller().item.default" class="checkbox checkbox-xs" />
               <span class="label-text">Default</span>
             </label>
           </div>
@@ -86,16 +86,26 @@ const vars = ref(JSON.stringify(variables, null, 2));
         </div>
       </FormSection>
       <FormSection title="Custom Text before table" description="Add custom text before the item table">
-        <Editor v-model="controller().item.data.texts.beforeTable" />
+        <Editor v-model="controller().item.data.texts.beforeTable" placeholder="Custom text before table" />
       </FormSection>
       <FormSection title="Custom Text after table" description="Add custom text after the item table">
-        <Editor v-model="controller().item.data.texts.afterTable" />
+        <Editor v-model="controller().item.data.texts.afterTable" placeholder="Custom text after table" />
       </FormSection>
       <div class="flex gap-3 px-10 mb-14 mt-5 w-full">
-        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.first" title="Column First" />
-        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.second" title="Column Second" />
-        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.third" title="Column Third" />
-        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.fourth" title="Column Fourth" />
+        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.first" title="Column First" placeholder="Text of first column" />
+        <Editor
+          class="w-1/4 h-72"
+          v-model="controller().item.data.columns.second"
+          title="Column Second"
+          placeholder="Text of second column"
+        />
+        <Editor class="w-1/4 h-72" v-model="controller().item.data.columns.third" title="Column Third" placeholder="Text of third column" />
+        <Editor
+          class="w-1/4 h-72"
+          v-model="controller().item.data.columns.fourth"
+          title="Column Fourth"
+          placeholder="Text of fourth column"
+        />
       </div>
       <div class="divider"></div>
 

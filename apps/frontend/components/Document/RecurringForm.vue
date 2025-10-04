@@ -109,6 +109,8 @@ const emit = defineEmits(["close"]);
         Will start on {{ controller().recurring.startDate.toLocaleDateString() }} and repeat {{ patternString }}
       </small>
     </div>
-    <button class="btn btn-sm btn-neutral" @click="emit('close')">OK</button>
+    <form method="dialog">
+      <button class="btn btn-sm btn-neutral" @click="emit('close')">OK</button>
+    </form>
   </div>
 </template>

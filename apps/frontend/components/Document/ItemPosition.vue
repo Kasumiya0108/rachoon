@@ -15,7 +15,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
   <tr>
     <td colspan="8">
       <div class="collapse" :class="{ 'collapse-open': position.focused }">
-        <table class="table table-compact w-full">
+        <table class="">
           <tbody>
             <tr>
               <td class="handle" width="20">
@@ -32,66 +32,58 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
                 />
               </td>
               <td width="200">
-                <div class="form-control">
-                  <div class="input-group" v-if="document.type !== 'reminder'">
-                    <input
-                      :disabled="document.disabled()"
-                      type="text"
-                      placeholder="0"
-                      v-maska="'#*.#*'"
-                      v-model="position.quantity"
-                      class="input input-bordered input-sm w-full"
-                    />
-                    <select class="select select-bordered select-sm bg-base-300" v-model="position.unit" :disabled="document.disabled()">
-                      <option v-for="u in units" :value="u.title" :key="u.title">
-                        {{ u.title }}
-                      </option>
-                    </select>
-                  </div>
+                <div class="input-group" v-if="document.type !== 'reminder'">
+                  <input
+                    :disabled="document.disabled()"
+                    type="text"
+                    placeholder="0"
+                    v-maska="'#*.#*'"
+                    v-model="position.quantity"
+                    class="input input-bordered input-sm w-full"
+                  />
+                  <select class="select select-bordered select-sm bg-base-300" v-model="position.unit" :disabled="document.disabled()">
+                    <option v-for="u in units" :value="u.title" :key="u.title">
+                      {{ u.title }}
+                    </option>
+                  </select>
                 </div>
               </td>
               <td width="170">
-                <div class="form-control">
-                  <label class="input-group">
-                    <input
-                      type="text"
-                      placeholder="0"
-                      v-model.number="position.price"
-                      v-maska="'#*.##'"
-                      class="input input-bordered input-sm w-full"
-                      :disabled="document.disabled()"
-                    />
-                    <span>€</span>
-                  </label>
-                </div>
+                <label class="input-group">
+                  <input
+                    type="text"
+                    placeholder="0"
+                    v-model.number="position.price"
+                    v-maska="'#*.##'"
+                    class="input input-bordered input-sm w-full"
+                    :disabled="document.disabled()"
+                  />
+                  <span>€</span>
+                </label>
               </td>
               <td width="120">
-                <div class="form-control" v-if="document.type !== 'reminder'">
-                  <label class="input-group">
-                    <select class="select select-bordered select-sm" v-model="position.tax" :disabled="document.disabled()">
-                      <option v-for="r in taxRates" :value="r.rate" :key="r.rate">{{ r.rate }}%</option>
-                    </select>
-                    <span>%</span>
-                  </label>
-                </div>
+                <label class="input-group" v-if="document.type !== 'reminder'">
+                  <select class="select select-bordered select-sm" v-model="position.tax" :disabled="document.disabled()">
+                    <option v-for="r in taxRates" :value="r.rate" :key="r.rate">{{ r.rate }}%</option>
+                  </select>
+                  <span>%</span>
+                </label>
               </td>
               <td width="120">
-                <div class="form-control" v-if="document.type !== 'reminder'">
-                  <label class="input-group">
-                    <input
-                      type="text"
-                      placeholder="0"
-                      class="input input-bordered input-sm w-full"
-                      v-model.number="position.discount"
-                      v-maska="{ mask: '#*.##', preprocessor: (val) => useFormat.max100(val) }"
-                      :disabled="document.disabled()"
-                    />
-                    <span>%</span>
-                  </label>
-                </div>
+                <label class="input-group" v-if="document.type !== 'reminder'">
+                  <input
+                    type="text"
+                    placeholder="0"
+                    class="input input-bordered input-sm w-full"
+                    v-model.number="position.discount"
+                    v-maska="{ mask: '#*.##', preprocessor: (val) => useFormat.max100(val) }"
+                    :disabled="document.disabled()"
+                  />
+                  <span>%</span>
+                </label>
               </td>
               <td width="200" class="text-right">
-                <span class="text-info">{{ useFormat.toCurrency(position.net) }}</span>
+                <strong>{{ useFormat.toCurrency(position.net) }}</strong>
                 <!--   <Popper arrow hover> -->
                 <!--     <span class="text-info">{{ useFormat.toCurrency(position.net) }}</span> -->
                 <!--     <template #content> -->
@@ -129,7 +121,7 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
           </tbody>
         </table>
         <div class="collapse-content p-0 mx-10">
-          <Editor v-model="position.text" placeholder="Add a description ..." class="ml-4 bg-transparent" />
+          <Editor v-model="position.text" placeholder="Add a description ..." />
         </div>
       </div>
     </td>

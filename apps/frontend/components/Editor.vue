@@ -33,7 +33,7 @@ const editor = useEditor({
     <div class="prose mb-2" v-if="$props.title">
       <h4>{{ $props.title }}</h4>
     </div>
-    <div class="bg-base-300 h-full p-2 rounded-lg">
+    <div class="h-full p-2 rounded-lg">
       <div>
         <button class="btn btn-square btn-xs mr-1" @click="editor.commands.toggleBold()">
           <FaIcon icon="fa-solid fa-bold" />

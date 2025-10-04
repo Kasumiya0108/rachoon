@@ -50,7 +50,7 @@ function update(date) {
     :enableTimePicker="false"
   >
     <template #input-icon>
-      <FaIcon icon="fa-calendar-days" class="text-info" :class="iconOnly ? '' : 'text-sm ml-3'" />
+      <FaIcon icon="fa-calendar-days" :class="iconOnly ? '' : 'text-sm ml-3'" />
     </template>
   </VueDatePicker>
 </template>

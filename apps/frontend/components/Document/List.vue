@@ -79,8 +79,8 @@ const icons = { offers: "fa-file-contract", invoices: "fa-file-invoice", reminde
         <!-- head -->
         <thead>
           <tr>
-            <th width="50"><FaIcon icon="fa-solid fa-repeat" class="ml-1" /></th>
             <th>#</th>
+            <th width="50"><FaIcon icon="fa-solid fa-repeat" class="ml-1" /></th>
             <th>Client</th>
             <!-- <th> -->
             <!--   {{ controller().type() === "invoices" ? "Offer" : "Invoiced" }} -->
@@ -94,6 +94,13 @@ const icons = { offers: "fa-file-contract", invoices: "fa-file-invoice", reminde
         </thead>
         <tbody>
           <tr class="hover" v-for="i in list || controller().items" :key="i.id">
+            <td width="200">
+              <NuxtLink :href="'/' + (controller().type() || type) + '/' + i.id" class="link">
+                {{ i.number }}
+              </NuxtLink>
+              <br />
+              <small class="opacity-50">last modified {{ useFormat.date(i.updatedAt) }}</small>
+            </td>
             <td>
               <span
                 :class="`btn btn-circle btn-xs ${i.isRecurring ? 'btn-warning' : 'btn-neutral opacity-30'}`"
@@ -101,13 +108,6 @@ const icons = { offers: "fa-file-contract", invoices: "fa-file-invoice", reminde
               >
                 <FaIcon icon="fa-solid fa-repeat" />
               </span>
-            </td>
-            <td width="200">
-              <NuxtLink :href="'/' + (controller().type() || type) + '/' + i.id" class="link">
-                {{ i.number }}
-              </NuxtLink>
-              <br />
-              <small class="opacity-50">last modified {{ useFormat.date(i.updatedAt) }}</small>
             </td>
             <td>
               {{ i.client.name }}
