@@ -26,7 +26,7 @@ const discountsCharges = document.data.discountsCharges;
     </Draggable>
   </table>
   <div class="flex justify-center mt-5 mb-10">
-    <button :disabled="document.disabled() ? true : null" class="btn btn-xs btn-outline gap-1" @click="document.addPosition()">
+    <button :disabled="document.disabled()" class="btn btn-xs btn-outline gap-1" @click="document.addPosition()">
       <FaIcon icon="fa-add mr-5" />
       Add position
     </button>
@@ -52,11 +52,7 @@ const discountsCharges = document.data.discountsCharges;
     Add discounts or charges to apply them on the subtotal.
   </p>
   <div class="flex justify-center mt-5">
-    <button
-      class="btn btn-xs btn-info btn-outline mb-10 gap-1"
-      @click="document.addDiscountCharge()"
-      :disabled="document.disabled() ? true : null"
-    >
+    <button class="btn btn-xs btn-info btn-outline mb-10 gap-1" @click="document.addDiscountCharge()" :disabled="document.disabled()">
       <FaIcon icon="fa-add" />
       Add discount or charge
     </button>

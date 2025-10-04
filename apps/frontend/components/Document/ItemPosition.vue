@@ -15,11 +15,11 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
   <tr>
     <td colspan="8">
       <div class="collapse" :class="{ 'collapse-open': position.focused }">
-        <table class="table table-compact table-zebra w-full">
+        <table class="table table-compact w-full">
           <tbody>
             <tr>
-              <td class="handle text-info" width="20">
-                <FaIcon icon="fa-up-down" />
+              <td class="handle" width="20">
+                <FaIcon icon="fa-grip-vertical" class="cursor-pointer opacity-30" />
               </td>
               <td>
                 <input
@@ -118,11 +118,11 @@ position.unit = position.unit || units.filter((u) => u.default)[0].title;
 
               <td width="50">
                 <button
-                  class="btn btn-square btn-sm mr-2 text-error"
+                  class="btn btn-circle btn-xs mr-2 text-error"
                   @click="document.removePosition(index)"
                   :disabled="document.disabled()"
                 >
-                  <FaIcon icon="fa-trash-can" />
+                  <FaIcon icon="fa-xmark" />
                 </button>
               </td>
             </tr>
