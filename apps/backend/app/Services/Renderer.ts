@@ -44,7 +44,7 @@ export default class Renderer {
     const longDate = (value: any): string => Format.longDate(value, loc)
 
     return nunjucks.renderString(template.html, {
-      object: data,
+      document: data,
       template: template,
       organization: org,
       user: user,
