@@ -10,6 +10,7 @@ RUN npm install -g pnpm@latest
 COPY package.json .
 RUN pnpm install
 COPY . .
+RUN pnpm install
 RUN pnpm run build
 # COPY startup.sh /app
 ENTRYPOINT ["sleep", "infinity"]
