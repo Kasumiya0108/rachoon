@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     routeRules: {
-      "/app/envs": { proxy: "/api/envs" },
+      "/app/info": { proxy: "/api/info" },
     },
   },
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss"],

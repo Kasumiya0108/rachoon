@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const version = process.env.VERSION;
+const version = `v${useInfo().info.RACHOON_VERSION}` || "dev";
 </script>
 
 <template>

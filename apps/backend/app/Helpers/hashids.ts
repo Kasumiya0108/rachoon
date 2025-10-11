@@ -1,7 +1,7 @@
 import Sqids from 'sqids'
 
 const alphababet =
-  process.env.RACHOON_ALPHABET || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+  process.env.ALPHABET || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 export default class HashIDs {
   public static encode(val: number) {
     if (process.env.NODE_ENV === 'development') {

@@ -7,6 +7,6 @@ export default class AuthController {
         envs[key] = process.env[key]
       }
     })
-    return { envs }
+    return { ...envs }
   }
 }
