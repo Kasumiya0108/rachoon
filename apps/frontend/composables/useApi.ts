@@ -1,6 +1,6 @@
 import { Dashboard } from "~~/models/dashboard";
 import { Client, type ClientType } from "~~/models/client";
-import { Document, type DocumentType } from "~~/models/document";
+import { Document, DocumentStatus, type DocumentType } from "~~/models/document";
 import { type OrganizationType } from "~~/models/organization";
 import { User, type UserType } from "~~/models/user";
 import { Template, type TemplateType } from "~/models/template";
@@ -166,7 +166,7 @@ export default function useApi() {
         duplicate: async (id: string): Promise<Document> => (await useHttp.get(`${endpoint}/duplicate/${id}`)).body,
         delete: async (id: string) => (await useHttp.del(`${endpoint}/${id}`)).body,
         count: async (): Promise<number> => Number((await useHttp.get(`${endpoint}/?count=true&type=${type}`)).body),
-        setStatus: async (id: string, status: string) =>
+        setStatus: async (id: string, status: DocumentStatus) =>
           await useHttp.put(
             `/api/documents/status/${id}`,
             { status: status },

@@ -4,6 +4,7 @@ import { column, beforeSave, belongsTo, BelongsTo, computed } from '@ioc:Adonis/
 import Organization from './Organization'
 import HashIDs from 'App/Helpers/hashids'
 import BaseAppModel from './BaseAppModel'
+import { UserRole } from '@repo/common/User'
 
 export default class User extends BaseAppModel {
   public serializeExtras() {
@@ -24,7 +25,7 @@ export default class User extends BaseAppModel {
   public password: string
 
   @column()
-  public role: string
+  public role: UserRole
 
   @column()
   public rememberMeToken?: string
@@ -59,6 +60,6 @@ export default class User extends BaseAppModel {
 
   @computed()
   public get isAdmin() {
-    return this.role === 'admin'
+    return this.role === UserRole.ADMIN
   }
 }

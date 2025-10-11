@@ -1,11 +1,11 @@
 import { Organization } from "~~/models/organization";
 import _ from "lodash";
 import type { IBase } from "@repo/common/Base";
+import { UserRole } from "@repo/common/User";
 interface UserData {
   username: string;
   fullName: string;
   avatar: string;
-  rate: number;
 }
 
 type UserType = {
@@ -16,23 +16,21 @@ type UserType = {
   data: UserData;
   password: string;
   minutes: number;
-  role: string;
+  role: UserRole;
 };
 
 class User implements UserType, IBase {
   id: string = null;
-  role: string = "";
+  role: UserRole = UserRole.VIEWER;
   password: string = null;
   createdAt: Date = new Date();
   updatedAt: Date = new Date();
   email: string = "";
-  minutes: number = null;
   net: number = 0;
   data: UserData = {
     username: "",
     fullName: "",
     avatar: "",
-    rate: null,
   };
   duration?: string;
   initials = () => {
@@ -47,17 +45,6 @@ class User implements UserType, IBase {
     if (json) {
       _.merge(this, json);
       this.organization = new Organization(this.organization);
-      if (this.minutes === null) {
-        this.duration = "00h:00m";
-      } else {
-        const h = Math.floor(this.minutes / 60);
-
-        const m = this.minutes % 60;
-        this.duration = `${h.toString().padStart(2, "0")}h:${m.toString().padStart(2, "0")}m`;
-      }
-      if (this.minutes !== null && this.data.rate !== null) {
-        this.net = (this.minutes / 60) * this.data.rate;
-      }
     }
   }
   public toJSON() {

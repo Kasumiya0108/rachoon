@@ -22,7 +22,7 @@ export default class UsersSchema extends BaseSchema {
       table.increments('id').primary()
       table.string('email', 255).notNullable()
       table.string('password', 180).notNullable()
-      table.string('role', 10).notNullable()
+      table.smallint('role').notNullable()
       table.jsonb('data').defaultTo('{}')
       table.jsonb('settings').defaultTo('{}')
       table.string('remember_me_token').nullable()
@@ -83,8 +83,8 @@ export default class UsersSchema extends BaseSchema {
     this.schema.createTable('documents', (table) => {
       table.increments('id').primary()
       table.string('type', 10)
-      table.string('number', 100)
-      table.string('status', 10)
+      table.string('number', 30)
+      table.smallint('status')
       table.jsonb('data').defaultTo('{}')
       table.integer('client_id').unsigned().references('id').inTable('clients').onDelete('CASCADE')
       table

@@ -1,5 +1,5 @@
 import { Client, type ClientType } from "~~/models/client";
-import { Document, Recurring, type TaxOption } from "~~/models/document";
+import { Document, DocumentStatus, Recurring, type TaxOption } from "~~/models/document";
 import Helpers from "@repo/common/Helpers";
 
 import * as dateFns from "date-fns";
@@ -36,7 +36,7 @@ class DocumentStore extends Base<Document> {
     this.item.value.clientId = client.id;
     this.item.value.client = client;
     if (client.data.conditions.discount.value > 0) {
-      client.data.conditions.discount.value,
+      (client.data.conditions.discount.value,
         client.data.conditions.discount.valueType,
         this.item.value.addDiscountCharge({
           id: Date.now().toString(),
@@ -45,7 +45,7 @@ class DocumentStore extends Base<Document> {
           value: client.data.conditions.discount.value,
           valueType: client.data.conditions.discount.valueType,
           amount: 0,
-        });
+        }));
     }
     if (this.item.value.data.positions[0].price === null && this.item.value.data.positions[0].quantity === null) {
       this.item.value.removePosition(0);
@@ -63,7 +63,8 @@ class DocumentStore extends Base<Document> {
       useToast("Cannot change status", "Offer is already invoiced.", "warning");
       return;
     }
-    const status = d.status === "pending" ? (d.type === "invoice" ? "paid" : "accepted") : "pending";
+    const status =
+      d.status === DocumentStatus.Pending ? (d.type === "invoice" ? DocumentStatus.Paid : DocumentStatus.Accepted) : DocumentStatus.Pending;
     d.setStatus(status);
     useApi().documents(this.singularType()).setStatus(d.id, status);
   };

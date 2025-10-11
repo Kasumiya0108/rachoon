@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Document } from "~~/models/document";
+import { Document, DocumentStatus } from "~~/models/document";
 import * as datefns from "date-fns";
 
 const props = defineProps({
@@ -23,8 +23,8 @@ const icons = { offers: "fa-file-contract", invoices: "fa-file-invoice", reminde
 
 const getStatusClass = (row: Document): string => {
   if (row.overdue) return "error";
-  if (row.status === "accepted") return "info";
-  if (row.status === "paid") return "success";
+  if (row.status === DocumentStatus.Accepted) return "info";
+  if (row.status === DocumentStatus.Paid) return "success";
   if (row.invoices.length > 0) {
     const sum = row.invoices.reduce((p, c) => (p += c.data.net), 0);
     return sum >= row.data.net ? "success" : "warning";
@@ -37,18 +37,18 @@ const getStatusIcon = (row: Document): string => {
   if (row.invoices.length > 0) {
     return "fa solid fa-check";
   }
-  return row.status == "pending" ? "fa-regular fa-clock" : "fa-solid fa-check";
+  return row.status == DocumentStatus.Pending ? "fa-regular fa-clock" : "fa-solid fa-check";
 };
 
 const getStatusTooltip = (row: Document): string => {
   if (row.overdue) return "Overdue";
-  if (row.status === "accepted") return "Accepted";
-  if (row.status === "paid") return "Paid";
+  if (row.status === DocumentStatus.Accepted) return "Accepted";
+  if (row.status === DocumentStatus.Paid) return "Paid";
   if (row.invoices.length > 0) {
     const sum = row.invoices.reduce((p, c) => (p += c.data.net), 0);
     return sum >= row.data.net ? "Fully invoiced" : `${useFormat.toCurrency(sum)} invoiced`;
   }
-  return row.status == "pending" ? "Pending" : "Sent";
+  return row.status == DocumentStatus.Pending ? "Pending" : "Sent";
 };
 
 const columns = [

@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { Document as CommonDocument, DocumentData } from '@repo/common/Document'
+import { Document as CommonDocument, DocumentData, DocumentStatus } from '@repo/common/Document'
 import { isPast } from 'date-fns'
 import {
   beforeSave,
@@ -57,7 +57,7 @@ export default class Document extends BaseAppModel {
   public number: string
 
   @column()
-  public status: string
+  public status: DocumentStatus
 
   @column()
   public type: string

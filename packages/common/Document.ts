@@ -6,8 +6,9 @@ import Helpers from "./Helpers";
 export enum DocumentStatus {
   Draft = 0,
   Pending = 1,
-  Paid = 2,
-  Overdue = 3,
+  Accepted = 2,
+  Paid = 3,
+  Overdue = 4,
 }
 
 export interface RecurringType {
@@ -97,7 +98,7 @@ export type DocumentType = {
   id?: string;
   clientId: string | null;
   number: string;
-  status: string;
+  status: DocumentStatus;
   offerId: string | null;
   invoiceId: string | null;
   templateId: string | null;
@@ -119,7 +120,7 @@ class Document implements DocumentType {
   clientId = null;
   client: ClientType;
   number: string = "";
-  status: string = "pending";
+  status: DocumentStatus = DocumentStatus.Pending;
   offerId = null;
   templateId = null;
   invoiceId = null;
@@ -292,7 +293,7 @@ class Document implements DocumentType {
     });
   };
 
-  setStatus(status: string) {
+  setStatus(status: DocumentStatus) {
     this.status = status;
   }
 

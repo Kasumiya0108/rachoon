@@ -4,7 +4,7 @@ class DocumentValidator {
   public schema = schema.create({
     clientId: schema.number(),
     number: schema.string(),
-    status: schema.string(),
+    status: schema.number(),
     offerId: schema.number.optional(),
     templateId: schema.number.optional(),
     invoiceId: schema.number.optional(),
@@ -30,7 +30,7 @@ class DocumentValidator {
 
 class StatusValidator {
   public schema = schema.create({
-    status: schema.string(),
+    status: schema.number(),
   })
   public messages: CustomMessages = {}
 }

@@ -2,6 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ClientValidator from 'App/Validators/Client'
 import Client from '../../Models/Client'
 import Numberervice from 'App/Services/Number'
+import { DocumentStatus } from '@repo/common/Document'
 
 export default class ClientsController {
   public async index(ctx: HttpContextContract) {
@@ -13,10 +14,14 @@ export default class ClientsController {
     return await Client.query()
       .where({ organizationId: ctx.auth.user?.organizationId })
       .withCount('invoices', (query) => query.as('totalInvoices'))
-      .withCount('invoices', (query) => query.where({ status: 'pending' }).as('pendingInvoices'))
+      .withCount('invoices', (query) =>
+        query.where({ status: DocumentStatus.Pending }).as('pendingInvoices')
+      )
       .withCount('offers', (query) => query.as('totalOffers'))
       .withCount('reminders', (query) => query.as('totalReminders'))
-      .withCount('offers', (query) => query.where({ status: 'pending' }).as('pendingOffers'))
+      .withCount('offers', (query) =>
+        query.where({ status: DocumentStatus.Pending }).as('pendingOffers')
+      )
       .withScopes((scopes) => scopes.sortBy(ctx, Client))
       .withScopes((scopes) => scopes.filterBy(ctx, Client))
       .withScopes((scopes) => scopes.searchBy(ctx, Client))

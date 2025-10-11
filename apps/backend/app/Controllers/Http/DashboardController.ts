@@ -1,6 +1,7 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Document from 'App/Models/Document'
+import { DocumentStatus } from '@repo/common/Document'
 
 export default class DashboardController {
   public async index(ctx: HttpContextContract) {
@@ -19,7 +20,7 @@ export default class DashboardController {
     const pendingOffers = await Document.query()
       .where({
         type: 'offer',
-        status: 'pending',
+        status: DocumentStatus.Pending,
         organizationId: ctx.auth.user?.organization.id,
       })
       .preload('client')
@@ -31,7 +32,7 @@ export default class DashboardController {
     const pendingReminders = await Document.query()
       .where({
         type: 'reminder',
-        status: 'pending',
+        status: DocumentStatus.Pending,
         organizationId: ctx.auth.user?.organization.id,
       })
       .preload('client')
@@ -55,7 +56,7 @@ export default class DashboardController {
       .where({
         type: 'reminder',
         organizationId: ctx.auth.user?.organization.id,
-        status: 'pending',
+        status: DocumentStatus.Pending,
       })
       .select(Database.raw(`sum((data->>'total')::float) as total`))
       .select(Database.raw(`sum((data->>'net')::float) as net`))
