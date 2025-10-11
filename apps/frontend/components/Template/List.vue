@@ -29,7 +29,10 @@ const isDefault = (t: Template) => {
       >
         <NuxtLink :to="`/templates/${t.id}`">
           <div class="text-center">
-            <div><img :src="t.thumbnail" class="w-32 inline-block rounded-md" /></div>
+            <div>
+              <img :src="t.thumbnail" class="w-32 inline-block rounded-md" v-if="t.thumbnail" />
+              <FaIcon icon="fa-solid fa-image" class="text-6xl mb-28" v-else />
+            </div>
             <div class="text-xs mt-2">
               {{ t.title }}
             </div>
