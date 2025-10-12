@@ -1,11 +1,11 @@
 import { PDFiumLibrary, PDFiumPageRenderOptions } from '@hyzyla/pdfium'
-import Locale from '@repo/common/Locale'
+import { Locale } from '@repo/common'
 import Template from 'App/Models/Template'
 import User from 'App/Models/User'
 import { chromium } from 'playwright'
 import sharp from 'sharp'
 import nunjucks from 'nunjucks'
-import Format from '@repo/common/Format'
+import { Format } from '@repo/common'
 
 export default class Renderer {
   private static async renderFunction(

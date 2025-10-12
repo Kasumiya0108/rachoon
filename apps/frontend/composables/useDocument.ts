@@ -1,6 +1,6 @@
 import { Client } from "~~/models/client";
 import { DCType, Document, DocumentStatus, DocumentType, Recurring, ValueType, type TaxOption, ConvertOption } from "~~/models/document";
-import Helpers from "@repo/common/Helpers";
+import { Helpers } from "@repo/common";
 import { DateTime } from "luxon";
 
 import _ from "lodash";

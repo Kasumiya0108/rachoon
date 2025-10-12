@@ -1,8 +1,8 @@
 import { Organization } from "~~/models/organization";
 import _ from "lodash";
-import type { IBase } from "@repo/common/Base";
-import { UserRole } from "@repo/common/User";
-import Helpers from "@repo/common/Helpers";
+import type { IBase } from "@repo/common";
+import { UserRole } from "@repo/common";
+import { Helpers } from "@repo/common";
 interface UserData {
   username: string;
   fullName: string;

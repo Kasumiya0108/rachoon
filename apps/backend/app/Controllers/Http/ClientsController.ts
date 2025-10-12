@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ClientValidator from 'App/Validators/Client'
 import Client from '../../Models/Client'
 import Numberervice from 'App/Services/Number'
-import { DocumentStatus } from '@repo/common/Document'
+import { DocumentStatus } from '@repo/common'
 
 export default class ClientsController {
   public async index(ctx: HttpContextContract) {

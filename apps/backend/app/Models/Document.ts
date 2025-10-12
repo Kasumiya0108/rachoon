@@ -4,7 +4,7 @@ import {
   DocumentData,
   DocumentStatus,
   DocumentType,
-} from '@repo/common/Document'
+} from '@repo/common'
 import { isPast } from 'date-fns'
 import {
   beforeSave,

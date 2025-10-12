@@ -59,6 +59,7 @@
     "@adonisjs/view": "^6.2.0",
     "@hyzyla/pdfium": "^2.1.9",
     "@repo/common": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "adonis-lucid-soft-deletes": "^1.4.4",
     "base-x": "^5.0.1",
     "cron-parser": "^5.4.0",

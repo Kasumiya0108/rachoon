@@ -3,18 +3,59 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "tsc"
+    "dev": "tsup --watch",
+    "build": "tsup"
   },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "./*": {
-      "types": "./dist/*.d.ts",
-      "default": "./dist/*.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./Base": {
+      "types": "./dist/Base.d.ts",
+      "import": "./dist/Base.js",
+      "require": "./dist/Base.cjs"
+    },
+    "./Client": {
+      "types": "./dist/Client.d.ts",
+      "import": "./dist/Client.js",
+      "require": "./dist/Client.cjs"
+    },
+    "./Document": {
+      "types": "./dist/Document.d.ts",
+      "import": "./dist/Document.js",
+      "require": "./dist/Document.cjs"
+    },
+    "./Example": {
+      "types": "./dist/Example.d.ts",
+      "import": "./dist/Example.js",
+      "require": "./dist/Example.cjs"
+    },
+    "./Format": {
+      "types": "./dist/Format.d.ts",
+      "import": "./dist/Format.js",
+      "require": "./dist/Format.cjs"
+    },
+    "./Helpers": {
+      "types": "./dist/Helpers.d.ts",
+      "import": "./dist/Helpers.js",
+      "require": "./dist/Helpers.cjs"
+    },
+    "./Locale": {
+      "types": "./dist/Locale.d.ts",
+      "import": "./dist/Locale.js",
+      "require": "./dist/Locale.cjs"
+    },
+    "./User": {
+      "types": "./dist/User.d.ts",
+      "import": "./dist/User.js",
+      "require": "./dist/User.cjs"
     }
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
@@ -24,6 +65,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/lodash": "^4.17.20",
     "@types/sprintf-js": "^1.1.4",
+    "tsup": "^8.5.0",
     "typescript": "latest"
   }
 }

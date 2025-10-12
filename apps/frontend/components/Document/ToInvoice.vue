@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Format from "@repo/common/Format";
+import { Format } from "@repo/common";
 
 const controller = () => useDocument();
 const offer = controller().offer;

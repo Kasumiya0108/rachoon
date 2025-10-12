@@ -1,5 +1,5 @@
-import { DocumentType } from '@repo/common/Document'
-import Format from '@repo/common/Format'
+import { DocumentType } from '@repo/common'
+import { Format } from '@repo/common'
 import Client from 'App/Models/Client'
 import Document from 'App/Models/Document'
 import Organization from 'App/Models/Organization'

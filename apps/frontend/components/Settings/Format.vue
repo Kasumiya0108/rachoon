@@ -1,5 +1,5 @@
 <script setup>
-import Format from "@repo/common/Format";
+import { Format } from "@repo/common";
 const props = defineProps({
   entity: String,
 });

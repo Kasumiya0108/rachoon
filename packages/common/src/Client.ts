@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Helpers from "@repo/common/Helpers";
+import { Helpers } from "./Helpers";
 
 export interface ClientData {
   info: {
@@ -57,7 +57,7 @@ class Client {
 
   public constructor(json?: any) {
     if (json) {
-      Helpers.merge(this, json);
+      Helpers.merge<Client>(this, json);
       if (json.updatedAt && json.createdAt) {
         this.updatedAt = new Date(Date.parse(json.updatedAt.toString()));
         this.createdAt = new Date(Date.parse(json.createdAt.toString()));

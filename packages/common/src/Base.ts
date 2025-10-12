@@ -1,8 +1,8 @@
 import _ from "lodash";
-export interface IBase {
+interface IBase {
   errors: () => string[];
 }
-export class Base<T> {
+class Base<T> {
   public constructor(json?: T) {
     if (json) {
       _.merge(this, json);
@@ -12,3 +12,5 @@ export class Base<T> {
     return { ...this };
   }
 }
+
+export { Base, type IBase };

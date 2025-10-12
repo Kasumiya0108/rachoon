@@ -4,7 +4,7 @@ import Organization from './Organization'
 import HashIDs from 'App/Helpers/hashids'
 import Document from './Document'
 import BaseAppModel from './BaseAppModel'
-import { DocumentType } from '@repo/common/Document'
+import { DocumentType } from '@repo/common'
 
 export default class Client extends BaseAppModel {
   public static searchFields = ['name', 'number']

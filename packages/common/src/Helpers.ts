@@ -1,18 +1,18 @@
 import _ from "lodash";
 
-export default class Helpers {
+class Helpers {
   static merge<T>(defaultObj: T, remoteObj: T): T {
     const result = defaultObj as T;
 
     // Override with remote values that are not empty
     const allKeys = new Set([
-      ...Object.keys(defaultObj || {}),
-      ...Object.keys(remoteObj || {}),
-    ]);
+      ...Object.keys(defaultObj!),
+      ...Object.keys(remoteObj!),
+    ]) as Set<keyof T>;
 
-    allKeys.forEach((key: any) => {
-      const val1 = defaultObj?.[key];
-      const val2 = remoteObj?.[key];
+    allKeys.forEach((key: keyof T) => {
+      const val1 = defaultObj[key];
+      const val2 = remoteObj[key];
 
       // Check if values are "empty" (null, undefined, empty string, empty array, empty object)
       const isEmpty1 = this.isEmptyValue(val1);
@@ -66,3 +66,5 @@ export default class Helpers {
     return false;
   }
 }
+
+export { Helpers };

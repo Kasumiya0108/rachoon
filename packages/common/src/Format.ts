@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-export default class Format {
+class Format {
   static toCurrency(value: any, locale: string, currency: string) {
     const formatter = new Intl.NumberFormat(locale, {
       style: "currency",
@@ -40,3 +40,5 @@ export default class Format {
     return number;
   }
 }
+
+export { Format };

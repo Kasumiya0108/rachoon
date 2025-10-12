@@ -1,4 +1,4 @@
-import Format from "@repo/common/Format";
+import { Format } from "@repo/common";
 
 function toCurrency(value: any) {
   return Format.toCurrency(value, useSettings().settings.general.locale, useSettings().settings.general.currency);

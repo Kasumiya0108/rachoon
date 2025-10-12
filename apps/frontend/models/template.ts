@@ -1,4 +1,4 @@
-import Helpers from "@repo/common/Helpers";
+import { Helpers } from "@repo/common";
 import _ from "lodash";
 interface TemplateData {
   columns: {

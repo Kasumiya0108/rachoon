@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Organization from 'App/Models/Organization'
 import User from 'App/Models/User'
 import RegisterValidator from 'App/Validators/Register'
-import { UserRole } from '@repo/common/User'
+import { UserRole } from '@repo/common'
 
 export default class RegisterController {
   public async store(ctx: HttpContextContract) {

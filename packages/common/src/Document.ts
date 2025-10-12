@@ -1,6 +1,6 @@
-import { Client } from "@repo/common/Client";
+import { Client } from "./Client";
 import _ from "lodash";
-import Helpers from "@repo/common/Helpers";
+import { Helpers } from "./Helpers";
 import { DateTime } from "luxon";
 
 export enum DocumentStatus {

@@ -1,5 +1,5 @@
 import { sprintf } from "sprintf-js";
-export default class Locale {
+class Locale {
   public static messages: { [l: string]: { [k: string]: string } } = {
     en: {
       invoice: "invoice",
@@ -61,3 +61,5 @@ export default class Locale {
     return sprintf(s, ...values);
   }
 }
+
+export { Locale };

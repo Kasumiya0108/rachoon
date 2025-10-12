@@ -1,2 +1,1 @@
-export * from "@repo/common/Client";
-
+export { Client } from "@repo/common";

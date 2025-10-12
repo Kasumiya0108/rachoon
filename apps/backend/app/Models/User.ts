@@ -4,7 +4,7 @@ import { column, beforeSave, belongsTo, BelongsTo, computed } from '@ioc:Adonis/
 import Organization from './Organization'
 import HashIDs from 'App/Helpers/hashids'
 import BaseAppModel from './BaseAppModel'
-import { UserRole } from '@repo/common/User'
+import { UserRole } from '@repo/common'
 
 export default class User extends BaseAppModel {
   public serializeExtras() {

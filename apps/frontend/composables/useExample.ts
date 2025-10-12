@@ -1,4 +1,4 @@
-import Format from "@repo/common/Format";
+import { Format } from "@repo/common";
 import { Client } from "~~/models/client";
 import { Document } from "~~/models/document";
 

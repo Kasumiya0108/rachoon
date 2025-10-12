@@ -1,7 +1,7 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Document from 'App/Models/Document'
-import { DocumentStatus, DocumentType } from '@repo/common/Document'
+import { DocumentStatus, DocumentType } from '@repo/common'
 
 export default class DashboardController {
   public async index(ctx: HttpContextContract) {

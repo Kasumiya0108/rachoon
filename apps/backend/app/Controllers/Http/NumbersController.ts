@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { DocumentType } from '@repo/common/Document'
+import { DocumentType } from '@repo/common'
 import NumberService from 'App/Services/Number'
 
 export default class AuthController {

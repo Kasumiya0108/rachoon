@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
-import { UserRole } from '@repo/common/User'
+import { UserRole } from '@repo/common'
 
 class ProfileValidator {
   constructor(protected ctx: HttpContextContract) {}

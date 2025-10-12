@@ -1,6 +1,6 @@
 import { Token, User } from "~~/models/user";
 import _ from "lodash";
-import Helpers from "@repo/common/Helpers";
+import { Helpers } from "@repo/common";
 
 class ProfileStore {
   me = ref<User>(new User());
