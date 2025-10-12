@@ -43,9 +43,9 @@ const fees = useSettings().settings.reminders.fees;
           </td>
           <td></td>
           <td class="text-right">
-            <button class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeFee(i)">
+            <label class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeFee(i)">
               <FaIcon icon="fa-xmark" />
-            </button>
+            </label>
           </td>
         </tr>
       </tbody>

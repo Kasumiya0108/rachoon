@@ -29,9 +29,9 @@ const defaultUnit = ref(units.findIndex((u) => u.default));
           </td>
           <td></td>
           <td class="text-right">
-            <button class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeUnit(i)">
+            <label class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeUnit(i)">
               <FaIcon icon="fa-xmark" />
-            </button>
+            </label>
           </td>
         </tr>
       </tbody>

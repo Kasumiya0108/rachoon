@@ -3,7 +3,7 @@ const props = defineProps({
   index: { type: Number, required: true },
 });
 const document = useDocument().item;
-const position = () =>document.data.positions[props.index];
+const position = () => document.data.positions[props.index];
 const taxRates = useProfile().me.organization.settings.taxes.rates;
 const units = useProfile().me.organization.settings.units;
 
@@ -109,13 +109,13 @@ position().unit = position().unit || units.filter((u) => u.default)[0].title;
               </td>
 
               <td width="50">
-                <button
+                <label
                   class="btn btn-circle btn-xs mr-2 text-error"
                   @click="document.removePosition(index)"
                   :disabled="document.disabled()"
                 >
                   <FaIcon icon="fa-xmark" />
-                </button>
+                </label>
               </td>
             </tr>
           </tbody>

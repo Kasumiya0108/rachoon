@@ -1,25 +1,10 @@
 import * as dateFns from "date-fns";
-import type { DiscountCharge, TaxOption, TaxRate } from "./document";
+import { ValueType, type DiscountCharge, type TaxOption, type TaxRate, DCType } from "./document";
 import _ from "lodash";
 interface SettingsData {
   general: {
     currency: string;
     locale: string;
-  };
-  style: {
-    colors: {
-      primary: string;
-      secondary: string;
-      bodyText: string;
-      border: string;
-      headerBackground: string;
-      headerText: string;
-      footerBackground: string;
-      footerText: string;
-      tableEvenBackground: string;
-      tableOddBackground: string;
-    };
-    template: string;
   };
   units: Array<{ title: string; default: boolean }>;
   invoices: {
@@ -64,21 +49,6 @@ class Settings implements SettingsData {
   general = {
     currency: "USD",
     locale: "en-US",
-  };
-  style = {
-    colors: {
-      primary: "#7287fd",
-      secondary: "#dc8a78",
-      bodyText: "#1e1e2e",
-      border: "#e6e9ef",
-      headerBackground: "#e6e9ef",
-      headerText: "#1e1e2e",
-      footerBackground: "#1e1e2e",
-      footerText: "#cdd6f4",
-      tableEvenBackground: "#e6e9ef",
-      tableOddBackground: "#ffffff",
-    },
-    template: "",
   };
   invoices = {
     title: "Invoice",
@@ -175,8 +145,8 @@ class Settings implements SettingsData {
     this.reminders.fees.push({
       title: "Reminder fee",
       value: 0,
-      type: "charge",
-      valueType: "fixed",
+      type: DCType.Charge,
+      valueType: ValueType.Fixed,
     });
   }
   public addTaxOption() {

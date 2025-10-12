@@ -36,15 +36,15 @@ const defaultOption = ref(options.findIndex((o) => o.default));
           </td>
           <td></td>
           <td class="text-right">
-            <button class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeTaxRate(i)">
+            <label class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeTaxRate(i)">
               <FaIcon icon="fa-xmark" />
-            </button>
+            </label>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="flex justify-center mt-5">
-      <button class="btn btn-xs btn-outline gap-1" @click="useSettings().settings.addTaxRate()">
+      <button type="button" class="btn btn-xs btn-outline gap-1" @click="useSettings().settings.addTaxRate()">
         <FaIcon icon="fa-add mr-5" />
         Add rate
       </button>
@@ -84,15 +84,15 @@ const defaultOption = ref(options.findIndex((o) => o.default));
           </td>
           <td></td>
           <td class="text-right">
-            <button class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeTaxOption(i)">
+            <label class="btn btn-ghost btn-circle btn-xs mr-2" @click="useSettings().settings.removeTaxOption(i)">
               <FaIcon icon="fa-xmark" />
-            </button>
+            </label>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="flex justify-center mt-5">
-      <button class="btn btn-xs btn-outline gap-1" @click="useSettings().settings.addTaxOption()">
+      <button type="button" class="btn btn-xs btn-outline gap-1" @click="useSettings().settings.addTaxOption()">
         <FaIcon icon="fa-add mr-5" />
         Add option
       </button>

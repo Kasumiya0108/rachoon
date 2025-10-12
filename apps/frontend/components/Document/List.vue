@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Document, DocumentStatus } from "~~/models/document";
+import { Document, DocumentStatus, DocumentType } from "~~/models/document";
 import * as datefns from "date-fns";
 
 const props = defineProps({
@@ -166,7 +166,7 @@ const columns = [
             </label>
           </li>
 
-          <li v-if="row.type === 'invoice'">
+          <li v-if="row.type === DocumentType.Invoice && row.overdue">
             <NuxtLink :href="`/reminders/new?invoice=${row.id}`">
               <FaIcon icon="fa-solid fa-bullhorn" />
               Create Reminder

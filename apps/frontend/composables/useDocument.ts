@@ -118,7 +118,7 @@ class DocumentStore extends Base<Document> {
 
   handleReminder = async () => {
     this.reminderInvoice.value = await useApi()
-      .documents("invoice")
+      .documents(DocumentType.Invoice)
       .get(useRoute().query.invoice as string);
     this.item.value.data.positions[0] = {
       net: this.reminderInvoice.value.data.total,
@@ -152,8 +152,16 @@ class DocumentStore extends Base<Document> {
   };
 
   handleNew = async () => {
+    new Promise(async (r) => {
+      this.clients.value = (await useApi().clients().getAll()).rows;
+      r(true);
+    });
+
     this.recurring.value = new Recurring();
-    this.item.value.number = await useApi().number(this.docType()).get();
+    new Promise(async (r) => {
+      this.item.value.number = await useApi().number(this.docType()).get();
+      r(true);
+    });
     this.item.value.data.dueDate = dateFns.add(this.item.value.data.date, {
       days: useProfile().me.organization.settings[this.type()].dueDays,
     });
@@ -167,8 +175,10 @@ class DocumentStore extends Base<Document> {
 
   form = async () => {
     this.loading.value = true;
-    this.clients.value = (await useApi().clients().getAll()).rows;
-    this.templates.value = (await useApi().templates().getAll()).rows;
+    new Promise(async (r) => {
+      this.templates.value = (await useApi().templates().getAll()).rows;
+      r(true);
+    });
     const id = useRoute().params["id"] as string;
 
     this.item.value = new Document();

@@ -106,10 +106,10 @@ export default defineStore("example", () => {
   offer.client = client;
   offer.calculate();
 
-  const reminder = new Document()
+  const reminder = new Document();
   reminder.type = "reminder";
   reminder.data.positions = [
-{
+    {
       title: "Invoice #12345",
       text: "",
       quantity: 1,
@@ -117,8 +117,7 @@ export default defineStore("example", () => {
       tax: 0,
       unit: "hrs",
     },
-
-  ]
+  ];
 
   reminder.client = client;
   reminder.calculate();
@@ -128,10 +127,11 @@ export default defineStore("example", () => {
     offer.number = Format.number(useSettings().settings.offers.number, 0);
     reminder.number = Format.number(useSettings().settings.reminders.number, 0);
 
-    const invoicePreview = await useRender(invoice, true, templateId);
-    const offerPreview = await useRender(offer, true, templateId);
-    const reminderPreview = await useRender(reminder, true, templateId);
-
+    const [invoicePreview, offerPreview, reminderPreview] = await Promise.all([
+      useRender(invoice, true, templateId),
+      useRender(offer, true, templateId),
+      useRender(reminder, true, templateId),
+    ]);
 
     return [...invoicePreview, ...offerPreview, ...reminderPreview];
   }

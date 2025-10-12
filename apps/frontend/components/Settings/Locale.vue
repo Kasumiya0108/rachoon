@@ -1,6 +1,4 @@
-<script setup>
-import Format from "@repo/common/Format";
-</script>
+<script setup></script>
 <template>
   <FormSection title="Locale" description="Set currency and Date format">
     <div class="flex">
@@ -9,8 +7,7 @@ import Format from "@repo/common/Format";
           <label class="label w-full max-w-xs">
             <span class="label-text">Currency</span>
           </label>
-          <select class="select select-bordered select-sm bg-base-300"
-            v-model="useSettings().settings.general.currency">
+          <select class="select select-bordered select-sm bg-base-300" v-model="useSettings().settings.general.currency">
             <option v-for="c in useCountries.currencies" :value="c.cc">{{ c.cc }} ({{ c.symbol }})</option>
           </select>
         </div>
