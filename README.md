@@ -69,9 +69,11 @@ services:
       - PG_USER=<pg-user>
       - PG_PASSWORD=<pg-password>
       - PG_DB_NAME=<pg-database>
-      - BASE_URL=https://rachoon.dnmc.in
+      - BASE_URL=https://rachoon.example.com
 
   gotenberg:
     image: gotenberg/gotenberg:8
     restart: always
 ```
+
+## First steps
