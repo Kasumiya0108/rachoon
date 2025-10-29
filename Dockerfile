@@ -15,6 +15,7 @@ RUN mkdir -p /app/backend/apps/backend
 COPY ./apps/frontend/.output /app/frontend
 
 COPY ./apps/backend/build /app/backend/apps/backend
+COPY ./apps/backend/resources /app/backend/apps/backend/resources
 COPY ./packages /app/backend/packages
 COPY ./package.json /app/backend/
 COPY ./pnpm-workspace.yaml /app/backend/
