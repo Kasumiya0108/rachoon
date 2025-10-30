@@ -115,7 +115,7 @@ class Document {
   status: DocumentStatus = DocumentStatus.Pending;
   offerId: null | string = null;
   templateId: null | string = null;
-  invoiceId = null;
+  invoiceId: null | string = null;
   totalReminders = 0;
   isRecurring = false;
   isFromRecurring = false;

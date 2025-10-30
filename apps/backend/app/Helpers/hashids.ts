@@ -4,6 +4,9 @@ const alphababet =
   process.env.ALPHABET || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 export default class HashIDs {
   public static encode(val: number) {
+    if (val === null) {
+      return null
+    }
     if (process.env.NODE_ENV === 'development') {
       return `${val}`
     }
@@ -12,6 +15,9 @@ export default class HashIDs {
   }
 
   public static decode(val: string) {
+    if (val === null || val === 'null') {
+      return null
+    }
     if (process.env.NODE_ENV === 'development') {
       return Number(val)
     }
