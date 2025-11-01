@@ -2,7 +2,7 @@ FROM node:23-alpine
 
 USER root
 
-RUN apk add --no-cache --update graphicsmagick ghostscript caddy
+RUN apk add --no-cache --update graphicsmagick ghostscript caddy dcron
 
 WORKDIR /app
 COPY ./Caddyfile .
