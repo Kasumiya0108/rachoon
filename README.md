@@ -88,3 +88,43 @@ services:
 - Visit: <http://localhost:8080/signup>
 - Create your account
 - Start invoicing
+
+---
+
+## Development
+
+This project uses a monorepo structure managed by Turborepo.
+
+### Build Configuration
+
+The project is organized with the following build outputs:
+
+- **Frontend (Nuxt)**: `.output/` directory
+- **Backend (AdonisJS)**: `build/` directory
+- **Packages**: `dist/` directory
+
+### Build Commands
+
+```bash
+# Install dependencies
+pnpm install
+
+# Build all packages
+pnpm build
+
+# Run in development mode
+pnpm dev
+```
+
+### Project Structure
+
+```text
+rachoon/
+├── apps/
+│   ├── backend/     # AdonisJS API server
+│   └── frontend/    # Nuxt.js web application
+├── packages/
+│   ├── common/      # Shared code
+│   └── typescript-config/
+└── turbo.json       # Turborepo configuration
+```
