@@ -4,6 +4,9 @@ thank you for considering contributing to rachoon. this document outlines the pr
 
 ## code of conduct
 
+this project adheres to a code of conduct that all contributors are expected to follow. please read [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) before contributing.
+
+key points:
 - be respectful and professional
 - provide constructive feedback
 - focus on what is best for the project and community
